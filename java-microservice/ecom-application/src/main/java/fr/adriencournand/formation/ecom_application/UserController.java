@@ -2,11 +2,13 @@ package fr.adriencournand.formation.ecom_application;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +37,13 @@ public class UserController {
     public ResponseEntity<String> CreateUser(@RequestBody User user) {
         userService.AddUser(user);
         return ResponseEntity.ok("User Added");
+    }
+
+    @PutMapping("/api/users/{id}")
+    public ResponseEntity<String> UpdateUser(@PathVariable Long id, @RequestBody User user) {
+        user.setId(id);
+        boolean updateSuccess = userService.UpdateUser(user);
+        return new ResponseEntity<>(updateSuccess ? "User Updated" : "Error",
+                updateSuccess ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }
