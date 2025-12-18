@@ -2,6 +2,7 @@ package fr.adriencournand.formation.ecom_application;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,18 +22,18 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/api/users")
-    public List<User> GetAllUsers() {
-        return userService.FetchAllUsers();
+    public ResponseEntity<List<User>> GetAllUsers() {
+        return ResponseEntity.ok(userService.FetchAllUsers());
     }
 
     @GetMapping("/api/users/{id}")
-    public User GetUser(@PathVariable Long id) {
-        return userService.FetchUser(id);
+    public ResponseEntity<User> GetUser(@PathVariable Long id) {
+        return userService.FetchUser(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/api/users")
-    public String CreateUser(@RequestBody User user) {
+    public ResponseEntity<String> CreateUser(@RequestBody User user) {
         userService.AddUser(user);
-        return "User Added";
+        return ResponseEntity.ok("User Added");
     }
 }

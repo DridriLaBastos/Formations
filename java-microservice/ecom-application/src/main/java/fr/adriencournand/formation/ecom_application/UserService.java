@@ -2,6 +2,7 @@ package fr.adriencournand.formation.ecom_application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,13 +23,7 @@ public class UserService {
         return userList;
     }
 
-    public User FetchUser(Long id) {
-        for (User user : userList) {
-            if (user.getId().equals(id)) {
-                return user;
-            }
-        }
-
-        return null;
+    public Optional<User> FetchUser(Long id) {
+        return userList.stream().filter(user -> user.getId().equals(id)).findFirst();
     }
 }
