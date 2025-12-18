@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private List<User> userList = new ArrayList<>();
 
+    private Long currentUserId = 1L;
+
     public List<User> FetchAllUsers() {
         return userList;
     }
 
     public List<User> AddUser(User user) {
+        user.setId(currentUserId);
+        currentUserId += 1;
         userList.add(user);
         return userList;
     }
