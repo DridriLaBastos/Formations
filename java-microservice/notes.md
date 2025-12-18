@@ -37,3 +37,11 @@ servlet dispatcher permet de dispatcher les requête du navigateur il est le coe
 
 ## Notes
 Le contenu du fichier application.properties peut être spécifié en ligne de commande (utile j'imagine pour ne pas mettre des mots de passe dans les sources de l'application)
+
+# Liens Utiles
+* Logiciel de debugage d'API : https://www.postman.com/
+* Configuration d'un projet Spring boot : https://start.spring.io/
+* Json format vérificateur : https://jsonlint.com/
+
+# Troubleshooting
+* Vu dans windows: dans postman ajouter dans l'en tête la clef "Content-Type": "application/json"
