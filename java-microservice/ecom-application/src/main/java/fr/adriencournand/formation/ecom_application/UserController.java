@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/users")
 public class UserController {
 
     // @Autowired
@@ -23,23 +25,23 @@ public class UserController {
     // @RequiredArgsConstructor on the newer version of SpringBoost
     private final UserService userService;
 
-    @GetMapping("/api/users")
+    @GetMapping("")
     public ResponseEntity<List<User>> GetAllUsers() {
         return ResponseEntity.ok(userService.FetchAllUsers());
     }
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> GetUser(@PathVariable Long id) {
         return userService.FetchUser(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/api/users")
+    @PostMapping("")
     public ResponseEntity<String> CreateUser(@RequestBody User user) {
         userService.AddUser(user);
         return ResponseEntity.ok("User Added");
     }
 
-    @PutMapping("/api/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> UpdateUser(@PathVariable Long id, @RequestBody User user) {
         user.setId(id);
         boolean updateSuccess = userService.UpdateUser(user);
