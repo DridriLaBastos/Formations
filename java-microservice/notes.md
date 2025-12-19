@@ -26,17 +26,41 @@ Spring + configuration + embedded server
 Les objets géré par Spring s'appellent des 'beans'
 
 ## Architecture en couche
-* Presentation Layer -> frontend
-* Service Layer -> communication entre presentation layer et data layer. Contient la logique de l'application (business logic)
-* Data Access Layer -> accès aux bases de données
+* Presentation Layer -> Presents data and the application features to the user. Controllers exist in this layer
+* Service Layer -> Contains business logic.
+* Data Access Layer -> Contains repository class. Manage access to the database
 
 Browser <-> Controller <-> Service <-> Repository <-> database
 
 ## Requête
 servlet dispatcher permet de dispatcher les requête du navigateur il est le coeur de toute applciation Spring MVC. Automatiquement configuré par Spring Boot
 
-## Notes
-Le contenu du fichier application.properties peut être spécifié en ligne de commande (utile j'imagine pour ne pas mettre des mots de passe dans les sources de l'application)
+## Configuration
+L'application spring boot est configuré dans le fichier `application.properties`.
+Les valeurs de configuration peuvent aussi être ajoutée en ligne de commande (retrouver l'exemple de comment on fait)
+Le fichier peut aussi être écrit au format YAML
+
+Ces deux fichiers sont équivalent
+
+```properties
+spring.application.name=ecom-application
+
+spring.h2.console.enabled=true
+spring.datasource.url=jdbc:h2:mem:test
+```
+
+```yml
+spring:
+    application:
+        name: ecom-application
+    h2:
+        console:
+            enabled: true
+    datasource:
+        url: jdbc:h2:mem:test
+```
+_Questions_:
+* Dans le cas où le fichier de configuration est écrit en YAML est-ce qu'on peut toujours passer une valeur de configuration avec la même syntaxe en ligne de commande ?
 
 # Liens Utiles
 * Logiciel de debugage d'API : https://www.postman.com/
@@ -45,3 +69,7 @@ Le contenu du fichier application.properties peut être spécifié en ligne de c
 
 # Troubleshooting
 * Vu dans windows: dans postman ajouter dans l'en tête la clef "Content-Type": "application/json"
+
+# Notes
+## Section 5
+* JPA : technologie permettant de transcrire une classe de donnée et leur relation en table et requêtes SQL

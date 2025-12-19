@@ -1,36 +1,34 @@
 package fr.adriencournand.formation.ecom_application;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-@Service
-public class UserService {
-    private List<User> userList = new ArrayList<>();
+import lombok.RequiredArgsConstructor;
 
-    private Long currentUserId = 1L;
+@Service
+@RequiredArgsConstructor
+public class UserService {
+    private final IUserRepository userRepository;
 
     public List<User> FetchAllUsers() {
-        return userList;
+        return userRepository.findAll();
     }
 
-    public List<User> AddUser(User user) {
-        user.setId(currentUserId);
-        currentUserId += 1;
-        userList.add(user);
-        return userList;
+    public void AddUser(User user) {
+        userRepository.save(user);
     }
 
     public Optional<User> FetchUser(Long id) {
-        return userList.stream().filter(user -> user.getId().equals(id)).findFirst();
+        return userRepository.findById(id);
     }
 
     public boolean UpdateUser(User user) {
-        return userList.stream().filter(_user -> _user.getId().equals(user.getId())).findFirst().map(foundUser -> {
-            foundUser.setFirstName(user.getFirstName());
-            foundUser.setLastName(user.getLastName());
+        return userRepository.findById(user.getId()).map(existingUser -> {
+            existingUser.setFirstName(user.getFirstName());
+            existingUser.setLastName(user.getLastName());
+            userRepository.save(existingUser);
             return true;
         }).orElse(false);
     }
