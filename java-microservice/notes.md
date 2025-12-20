@@ -73,3 +73,6 @@ _Questions_:
 # Notes
 ## Section 5
 * JPA : technologie permettant de transcrire une classe de donnée et leur relation en table et requêtes SQL
+
+## Section 6
+Cascade 
