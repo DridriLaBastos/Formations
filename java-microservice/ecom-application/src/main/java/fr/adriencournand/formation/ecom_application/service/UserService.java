@@ -1,10 +1,12 @@
-package fr.adriencournand.formation.ecom_application;
+package fr.adriencournand.formation.ecom_application.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import fr.adriencournand.formation.ecom_application.model.User;
+import fr.adriencournand.formation.ecom_application.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

@@ -1,4 +1,4 @@
-package fr.adriencournand.formation.ecom_application;
+package fr.adriencournand.formation.ecom_application.controller;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.adriencournand.formation.ecom_application.model.User;
+import fr.adriencournand.formation.ecom_application.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
