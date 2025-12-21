@@ -89,3 +89,5 @@ Questions:
 * Pourquoi le type de l'ID est passé en String dans le UserResponse ? Pour agnostique au type de l'ID utilisé en interne ? Est-ce qu'il ne serait pas plus intéressant de définir un type (équivalent d'un typedef en C) et de garder le typage dans la classe ?
 * Le prix total dans un cart ne peut pas être générer automatiquement en SQL quand on ajoute un item ?
 * Pourquoi ne pas faire un cartItemResponse pour l'api permettant de récupérer les éléments d'un cart item ?
+* Pourquoi EUserRole n'a pas l'annotation Enumerated mais order status l'a ?
+* Pourquoi on a besoin de préciser le OneToMany dans la class Order s'il y a déjà le ManyToOne dans la classe OrderItem ?
