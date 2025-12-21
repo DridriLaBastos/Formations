@@ -75,4 +75,10 @@ _Questions_:
 * JPA : technologie permettant de transcrire une classe de donnée et leur relation en table et requêtes SQL
 
 ## Section 6
-Cascade 
+### Model Data Transfer Object (DTO)
+Permet de faire communiquer des sous-sytème entre eux
+(c'est ce que je voulais faire au début en trouvant bizarre qu'il faille envoyer toutes les informations. Encore une fois je me retrouve à avoir la bonne idée tout de suite et ensuite à me rendre compte qu'il y a un design patter associé)
+
+Questions:
+* Les conversions de types ne devraient pas dans l'idéal se faire dans le layer repository ?
+* Pourquoi le type de l'ID est passé en String dans le UserResponse ? Pour agnostique au type de l'ID utilisé en interne ? Est-ce qu'il ne serait pas plus intéressant de définir un type (équivalent d'un typedef en C) et de garder le typage dans la classe ?

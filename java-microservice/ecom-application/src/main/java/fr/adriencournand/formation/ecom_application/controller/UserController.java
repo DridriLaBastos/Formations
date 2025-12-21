@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.adriencournand.formation.ecom_application.model.User;
+import fr.adriencournand.formation.ecom_application.dto.UserRequest;
+import fr.adriencournand.formation.ecom_application.dto.UserResponse;
 import fr.adriencournand.formation.ecom_application.service.UserService;
 import lombok.RequiredArgsConstructor;
 
@@ -27,26 +28,25 @@ public class UserController {
     // @RequiredArgsConstructor on the newer version of SpringBoost
     private final UserService userService;
 
-    @GetMapping("")
-    public ResponseEntity<List<User>> GetAllUsers() {
+    @GetMapping()
+    public ResponseEntity<List<UserResponse>> GetAllUsers() {
         return ResponseEntity.ok(userService.FetchAllUsers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> GetUser(@PathVariable Long id) {
+    public ResponseEntity<UserResponse> GetUser(@PathVariable Long id) {
         return userService.FetchUser(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("")
-    public ResponseEntity<String> CreateUser(@RequestBody User user) {
+    @PostMapping()
+    public ResponseEntity<String> CreateUser(@RequestBody UserRequest user) {
         userService.AddUser(user);
         return ResponseEntity.ok("User Added");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> UpdateUser(@PathVariable Long id, @RequestBody User user) {
-        user.setId(id);
-        boolean updateSuccess = userService.UpdateUser(user);
+    public ResponseEntity<String> UpdateUser(@PathVariable Long id, @RequestBody UserRequest user) {
+        boolean updateSuccess = userService.UpdateUser(id, user);
         return new ResponseEntity<>(updateSuccess ? "User Updated" : "Error",
                 updateSuccess ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
