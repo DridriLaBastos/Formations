@@ -88,3 +88,4 @@ Questions:
 * Les conversions de types ne devraient pas dans l'idéal se faire dans le layer repository ?
 * Pourquoi le type de l'ID est passé en String dans le UserResponse ? Pour agnostique au type de l'ID utilisé en interne ? Est-ce qu'il ne serait pas plus intéressant de définir un type (équivalent d'un typedef en C) et de garder le typage dans la classe ?
 * Le prix total dans un cart ne peut pas être générer automatiquement en SQL quand on ajoute un item ?
+* Pourquoi ne pas faire un cartItemResponse pour l'api permettant de récupérer les éléments d'un cart item ?

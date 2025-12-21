@@ -1,8 +1,11 @@
 package fr.adriencournand.formation.ecom_application.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adriencournand.formation.ecom_application.dto.CartItemRequest;
+import fr.adriencournand.formation.ecom_application.model.CartItem;
 import fr.adriencournand.formation.ecom_application.service.CartService;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +24,11 @@ import lombok.RequiredArgsConstructor;
 public class CartController {
 
     private final CartService cartService;
+
+    @GetMapping
+    public ResponseEntity<List<CartItem>> GetCart(@RequestHeader("X-User-ID") String userId) {
+        return ResponseEntity.ok(cartService.CartForUser(userId));
+    }
 
     @PostMapping
     public ResponseEntity<String> AddToCart(

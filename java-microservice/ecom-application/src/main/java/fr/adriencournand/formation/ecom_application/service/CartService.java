@@ -1,6 +1,7 @@
 package fr.adriencournand.formation.ecom_application.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -75,4 +76,7 @@ public class CartService {
         return true;
     }
 
+    public List<CartItem> CartForUser(String userId) {
+        return userRepository.findById(Long.valueOf(userId)).map(cartItemRepository::findByUser).orElseGet(List::of);
+    }
 }
