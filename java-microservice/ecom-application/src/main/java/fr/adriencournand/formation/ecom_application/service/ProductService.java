@@ -1,6 +1,8 @@
 package fr.adriencournand.formation.ecom_application.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,24 @@ public class ProductService {
             Product updatedProduct = productRepository.save(existingProduct);
             return MapProductToProductResponse(updatedProduct);
         });
+    }
+
+    public List<ProductResponse> GetAllProducts() {
+        return productRepository.findByActiveTrue().stream().map(ProductService::MapProductToProductResponse)
+                .collect(Collectors.toList());
+    }
+
+    public boolean DeleteProduct(Long id) {
+        return productRepository.findById(id).map(existingProduct -> {
+            existingProduct.setActive(false);
+            productRepository.save(existingProduct);
+            return true;
+        }).orElse(false);
+    }
+
+    public List<ProductResponse> SearchProducts(String keyword) {
+        return productRepository.findByKeyword(keyword).stream().map(ProductService::MapProductToProductResponse)
+                .collect(Collectors.toList());
     }
 
     private static void UpdateProductFromProducRequest(Product product, ProductRequest request) {
@@ -71,5 +91,4 @@ public class ProductService {
 
         return response;
     }
-
 }
