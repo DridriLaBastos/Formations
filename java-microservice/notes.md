@@ -105,7 +105,7 @@ Actuator généralement utilisé:
 * /info: https://docs.spring.io/spring-boot/api/rest/actuator/info.html
 * /metrics: https://docs.spring.io/spring-boot/api/rest/actuator/metrics.html
 * /loggers: https://docs.spring.io/spring-boot/api/rest/actuator/loggers.html
-* /beans
+* /beans: https://docs.spring.io/spring-boot/api/rest/actuator/beans.html
 * /shutdowns
 
 ### Health
