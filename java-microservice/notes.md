@@ -59,6 +59,10 @@ spring:
     datasource:
         url: jdbc:h2:mem:test
 ```
+
+__Remarques__
+* Avec IntelliJ quand les dépendances sont changées il faut effectuer la manoeuvre suivante : Réglage -> Build, Execution, Deplaiyement -> Compiiler -> Annotation Processor -> Sélectionner Obtain processors from project classpath
+
 _Questions_:
 * Dans le cas où le fichier de configuration est écrit en YAML est-ce qu'on peut toujours passer une valeur de configuration avec la même syntaxe en ligne de commande ?
 
@@ -81,8 +85,8 @@ Permet de faire communiquer des sous-sytème entre eux
 
 ### JPA code parsing
 * JPA peut automatiquement créer les reqêtes nécessaire en analysant le nom des méthodes d'un repository
-* findBy<FieldName><Valeur> -> requête SELECT sur les champs qui ont la valeur demandé
-* @Query(<string>) comme attribue de fonction permet de spécifier une reqûete JP QL pour faire une requête personnalisée dans la base de donnée en appelanr la fonction
+* `findBy<FieldName><Valeur>` -> requête SELECT sur les champs qui ont la valeur demandé
+* `@Query(<string>)` comme attribue de fonction permet de spécifier une reqûete JP QL pour faire une requête personnalisée dans la base de donnée en appelanr la fonction
 
 Questions:
 * Les conversions de types ne devraient pas dans l'idéal se faire dans le layer repository ?
@@ -91,3 +95,27 @@ Questions:
 * Pourquoi ne pas faire un cartItemResponse pour l'api permettant de récupérer les éléments d'un cart item ?
 * Pourquoi EUserRole n'a pas l'annotation Enumerated mais order status l'a ?
 * Pourquoi on a besoin de préciser le OneToMany dans la class Order s'il y a déjà le ManyToOne dans la classe OrderItem ?
+
+## Section 7 - Spring Boost Actuators
+* Spring Boost Actuators : built-in production ready features to monitor an dmanage the application
+* * Ils sont customisable -> on peut créer ses propes endpoints
+
+Actuator généralement utilisé:
+* /health: https://docs.spring.io/spring-boot/api/rest/actuator/health.html
+* /info: https://docs.spring.io/spring-boot/api/rest/actuator/info.html
+* /metrics
+* /loggers
+* /beans
+* /shutdowns
+
+### Health
+Contrôlé dans le fichier de configuration avec la valeur `management.endpoints.endpoint.health.show-details` qui peut prendre les valeurs
+* `never` (default)
+* `when-authorized`
+* `always`
+
+Documentation : https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health
+
+### Info
+
+
