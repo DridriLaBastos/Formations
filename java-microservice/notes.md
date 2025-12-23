@@ -103,8 +103,8 @@ Questions:
 Actuator généralement utilisé:
 * /health: https://docs.spring.io/spring-boot/api/rest/actuator/health.html
 * /info: https://docs.spring.io/spring-boot/api/rest/actuator/info.html
-* /metrics
-* /loggers
+* /metrics: https://docs.spring.io/spring-boot/api/rest/actuator/metrics.html
+* /loggers: https://docs.spring.io/spring-boot/api/rest/actuator/loggers.html
 * /beans
 * /shutdowns
 
@@ -117,5 +117,5 @@ Contrôlé dans le fichier de configuration avec la valeur `management.endpoints
 Documentation : https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.health
 
 ### Info
-
+N/A
 
