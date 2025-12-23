@@ -119,3 +119,12 @@ Documentation : https://docs.spring.io/spring-boot/reference/actuator/endpoints.
 ### Info
 N/A
 
+### Logger
+Pour changer dynamiquement le niveau de log encoyer une POST à l'adresse `<application>/actuator/loggers/<module>`
+
+avec en body :
+```json
+{
+    "configuredLevel": "<LEVEL>"
+}
+```
