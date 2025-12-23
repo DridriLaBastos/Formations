@@ -19,4 +19,12 @@ management:
   endpoint:
     health:
       show-details: always
+  
+  info:
+    env:
+      enabled: true
 
+info:
+  app:
+    name: "E-Commerce Application"
+    description: "e-commerce application built following the Udemy toturial at https://www.udemy.com/course/java-spring-boot-microservices-with-spring-cloud-k8s-docker/?couponCode=UPGRADE02223"
