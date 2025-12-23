@@ -106,7 +106,7 @@ Actuator généralement utilisé:
 * /metrics: https://docs.spring.io/spring-boot/api/rest/actuator/metrics.html
 * /loggers: https://docs.spring.io/spring-boot/api/rest/actuator/loggers.html
 * /beans: https://docs.spring.io/spring-boot/api/rest/actuator/beans.html
-* /shutdowns
+* /shutdowns: https://docs.spring.io/spring-boot/api/rest/actuator/shutdown.html
 
 ### Health
 Contrôlé dans le fichier de configuration avec la valeur `management.endpoints.endpoint.health.show-details` qui peut prendre les valeurs
@@ -128,3 +128,10 @@ avec en body :
     "configuredLevel": "<LEVEL>"
 }
 ```
+
+### Shutdown
+
+Pour l'activer il faut envoyer une POST request à l'adresse `<application>/actuator/shutdown`
+
+## Questions:
+* Exposer les actuators à internet est dangereux. Comment sélectionner les end-points qui sont exposer à internet ou pas ?
