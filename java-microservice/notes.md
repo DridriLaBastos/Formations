@@ -135,3 +135,8 @@ Pour l'activer il faut envoyer une POST request à l'adresse `<application>/actu
 
 ## Questions:
 * Exposer les actuators à internet est dangereux. Comment sélectionner les end-points qui sont exposer à internet ou pas ?
+
+# Section 8 : Docker for Spring Boot
+
+* Utilisation de Paketo Buildpacks pour créer les images Docker qui implémente la spécifiqation Cloud Native Buildpacks
+* Command : `./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=<nom de l'image docker>`
