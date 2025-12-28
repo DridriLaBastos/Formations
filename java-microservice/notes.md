@@ -143,6 +143,14 @@ Pour l'activer il faut envoyer une POST request à l'adresse `<application>/actu
 
 # Section 9 : PostgreSQL
 
+## Configuration
 Penser à créer la base de donnée configurée dans le fichier de configuration de l'application
 
 Le mot de passe pour se connecter à la base de donnée peut être passé par une variable d'environnement lors de l'exécution de docker avec le paramètre `-e VAR=<valeur>`
+
+## Network
+Les containeurs peuvent communiquer à traver un réseau docker
+* Création d'un réseau: `docker network create <name>`
+* Dans docker run ajouter le paramètre `--network <name>` pour connecter les containers au même résuea
+* Les noms du conteneur sur le réseau correspondent à leur nom :
+* * Si 2 conteneurs `a` et `b` sont connectés au même réseau `docker exec a ping b` permet de pinger le conteneur `b` depuis le conteneur `a`
