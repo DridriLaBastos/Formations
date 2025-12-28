@@ -1,0 +1,37 @@
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:14
+    environment:
+      POSTGRES_USER: formation
+      POSTGRES_PASSWORD: formation
+      PGDATA: /data/formation/postgres
+    volumes:
+      - postgres:/data/formation.postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - java-ecom
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: adrien.cournand@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: pgadminpassword
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - java-ecom
+    restart: unless-stopped
+
+networks:
+  java-ecom:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

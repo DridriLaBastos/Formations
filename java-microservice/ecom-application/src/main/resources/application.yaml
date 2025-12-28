@@ -3,7 +3,8 @@ spring:
     name: "ecom-application"
   datasource:
     url: "jdbc:postgresql://localhost:5432/ecomdb"
-    username: adrien
+    username: formation
+    password: formation
   jpa:
     database: POSTGRESQL
     show-sql: true
