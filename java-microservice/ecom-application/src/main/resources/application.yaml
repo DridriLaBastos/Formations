@@ -4,7 +4,6 @@ spring:
   datasource:
     url: "jdbc:postgresql://localhost:5432/ecomdb"
     username: adrien
-    password: adrien
   jpa:
     database: POSTGRESQL
     show-sql: true

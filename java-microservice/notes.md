@@ -140,3 +140,9 @@ Pour l'activer il faut envoyer une POST request à l'adresse `<application>/actu
 
 * Utilisation de Paketo Buildpacks pour créer les images Docker qui implémente la spécifiqation Cloud Native Buildpacks
 * Command : `./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=<nom de l'image docker>`
+
+# Section 9 : PostgreSQL
+
+Penser à créer la base de donnée configurée dans le fichier de configuration de l'application
+
+Le mot de passe pour se connecter à la base de donnée peut être passé par une variable d'environnement lors de l'exécution de docker avec le paramètre `-e VAR=<valeur>`
