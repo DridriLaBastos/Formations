@@ -2,7 +2,7 @@ spring:
   application:
     name: ecom-user-microservice
   datasource:
-    url: "jdbc:postgresql://localhost:5432/ecomdb"
+    url: "jdbc:postgresql://localhost:5432/ecom"
     username: formation
     password: formation
   jpa:
