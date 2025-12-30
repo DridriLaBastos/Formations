@@ -34,8 +34,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> GetUser(@PathVariable Long id) {
-        return userService.FetchUser(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<UserResponse> GetUser(@PathVariable String id) {
+        return userService.FetchUser(id).map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping()
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> UpdateUser(@PathVariable Long id, @RequestBody UserRequest user) {
+    public ResponseEntity<String> UpdateUser(@PathVariable String id, @RequestBody UserRequest user) {
         boolean updateSuccess = userService.UpdateUser(id, user);
         return new ResponseEntity<>(updateSuccess ? "User Updated" : "Error",
                 updateSuccess ? HttpStatus.OK : HttpStatus.NOT_FOUND);

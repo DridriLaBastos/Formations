@@ -27,11 +27,11 @@ public class UserService {
         userRepository.save(MapUserRequestToUser(user));
     }
 
-    public Optional<UserResponse> FetchUser(Long id) {
+    public Optional<UserResponse> FetchUser(String id) {
         return userRepository.findById(id).map(UserService::MapUserToUserResponse);
     }
 
-    public boolean UpdateUser(Long id, UserRequest updateUserRequest) {
+    public boolean UpdateUser(String id, UserRequest updateUserRequest) {
         return userRepository.findById(id).map(existingUser -> {
             UpdateUserFromRequest(existingUser, updateUserRequest);
             userRepository.save(existingUser);

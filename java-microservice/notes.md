@@ -154,3 +154,7 @@ Les containeurs peuvent communiquer à traver un réseau docker
 * Dans docker run ajouter le paramètre `--network <name>` pour connecter les containers au même résuea
 * Les noms du conteneur sur le réseau correspondent à leur nom :
 * * Si 2 conteneurs `a` et `b` sont connectés au même réseau `docker exec a ping b` permet de pinger le conteneur `b` depuis le conteneur `a`
+
+# Section 12
+
+**MongoDB ne travail qu'avec des String pour les ID**
