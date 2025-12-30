@@ -1,17 +1,19 @@
+name: ecom
 services:
   postgres:
     container_name: postgres_container
+    hostname: postgres-server
     image: postgres:14
     environment:
       POSTGRES_USER: formation
       POSTGRES_PASSWORD: formation
-      PGDATA: /data/formation/postgres
+      PGDATA: /databases/postgres
     volumes:
-      - postgres:/data/formation.postgres
+      - $HOME/Documents/Informatique/databases/postgres:/databases/postgres
     ports:
       - "5432:5432"
     networks:
-      - java-ecom
+      - database
     restart: unless-stopped
   pgadmin:
     container_name: pgadmin_container
@@ -25,13 +27,23 @@ services:
     ports:
       - "5050:80"
     networks:
-      - java-ecom
+      - database
+    restart: unless-stopped
+  mongodb:
+    container_name: mongodb_server
+    hostname: mongodb-server
+    image: mongodb/mongodb-community-server
+    volumes:
+      - $HOME/Documents/Informatique/databases/mongodb:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - database
     restart: unless-stopped
 
 networks:
-  java-ecom:
+  database:
     driver: bridge
 
 volumes:
-  postgres:
   pgadmin:
