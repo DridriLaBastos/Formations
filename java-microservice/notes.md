@@ -158,3 +158,5 @@ Les containeurs peuvent communiquer à traver un réseau docker
 # Section 12
 
 **MongoDB ne travail qu'avec des String pour les ID**
+
+On peut configurer une base de donnée en ligne gratuitement pour apprendre à l'adresse https://cloud.mongodb.com/
