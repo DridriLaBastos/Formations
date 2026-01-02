@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations:
+            - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/configs
+
+server:
+  port: 8888
