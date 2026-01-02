@@ -165,3 +165,117 @@ Certains sites proposent l'utilisation de base de donnée gratuitement (service 
 
 Possibilité de formater la sortie sql de l'application spring avec le réglage suivant :
 `spring:datasaource:jpa:properties:hibernate:format_sql: true`
+
+# Section 13 : Spring Boot Configuration
+
+## Environment Management
+* Spring boot profiles : Différentes configuration selon le profile d'exécution (prod, test, dev, ...)
+
+### Récupérer les variables de configuration
+
+```java
+@Value("${scope1.scope2. ... .name}")
+private String var;
+```
+
+La valeur de la variable de configuration `scope1.scope2 ... .name` sera mis dans la variable var.
+**Attention** : Erreur si la variable n'est pas renseignée dans le fichier de configuration
+
+### Créer des profiles
+
+1. Création du fichier de configuration `application-<profile>.yaml`
+1. Création du profile dans le fichier de configuration par défaut `application.yaml`:
+
+```yaml
+spring:
+  profiles:
+    activer: <profile>
+```
+
+Chargement automatique du fichier de configuration `application-<profile>.yaml` au redémarrage de l'application
+
+_Remarque_: Ce paramètre peut être passé en ligne de commande
+
+### @Value
+Utile pour intégrer des valeurs depuis le fichier de configuration, la ligne de commande, des propriétés du système
+
+* Assignation d'une valeur par défaut si non présente dans le fichier de configuration : `@Value("${scope1.scope2. ... .name:<default-value>}")`
+* Assignation d'une variable d'environnement : `@Value("${<VAR_NAME>[:<default-value>]}")`
+* Substitution d'une variable d'environnement : `<ENV1>_<ENV2>...<ENVn>` est mappé en une configuration `<env1>.<env2>...<envn>`
+* Ligne de commande : `java -jar <app_jar_path> --<scope1>.<scope2> ... .<name>=<value>`
+* Lava System Properties : `java -jar -D<scope1>.<scope2> ... .<name>=<value> <app_jar_path>`
+
+### .env file
+
+Définir les variables de configuration dans un fichier `.env`:
+
+```conf
+<VAR1ENV1_VAR1ENV2...VAR1ENVn>=value1
+<VAR2ENV1_VAR2ENV2...VAR2ENVn>=value2
+...
+<VARmENV1_VARmENV2...VARmENVn>=valuem
+```
+
+Les valeurs seront disponible dans l'applciation _**dans la formation le fichier .env est donné en configuration des variables d'environnements dans IntelliJ -> comment le faire en vrai ?**_
+
+### Configuration Order
+
+1. Ligne de commande
+1. Java system properties : 
+1. OS environment variable
+1. fichier de configuration
+1. config server
+1. attributed default value
+
+## Security and Sensitive Data
+
+Si la variable d'environnement `ENV1_ENV2` est définie, dans le fichier de configuration sa valeur peut être récupérée avec
+```yaml
+scope1:
+    scope2:
+    ...
+        <name>: ${ENV1_ENV2}
+```
+
+## Consistency and Centralization
+
+### TypeSafety with @ConfigurationProperties
+
+L'annotation `@ConfigurationProperties` permet de mapper un fichier de configuration avec des variables Java en applicant une vérification de type
+
+```Java
+@Configuration
+@ConfigurationProperties(prefix = "<scope1>.<scope>... .<scopen>")
+@Data //To automatically generate getters and setters
+public class <ClassName> {
+    private <type1> <name1>;
+    private <type2> <name2>;
+    ...
+    private <typen> <namen>;
+}
+```
+
+```yaml
+scope1:
+  scope2:
+  ...
+    scope3:
+      name1: <valeur1>
+      name2: <valeur2>
+      ...
+      namen: <valeurn>
+```
+
+### Centralization with config server
+
+Spring Cloud Config Server
+* Storing configurations
+* Serving configurations
+* Refreshing configurations
+* Easy integration with Spring Boot
+* Support for different environments
+* Encryption & Decryption
+
+## Dynamic Updates and High Availability
+
+## Monitoring and versioning
