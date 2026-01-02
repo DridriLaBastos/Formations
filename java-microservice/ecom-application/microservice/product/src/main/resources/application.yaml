@@ -2,9 +2,9 @@ spring:
   application:
     name: ecom-product-microservice
   datasource:
-    url: "jdbc:postgresql://ep-red-pine-abxeouo5-pooler.eu-west-2.aws.neon.tech/products?sslmode=require&channel_binding=require"
-    username: neondb_owner
-    password: npg_RaKBXcEx9wH1
+    url: "jdbc:postgresql://localhost:5432/products"
+    username: formation
+    password: formation
   jpa:
     database: POSTGRESQL
     show-sql: true

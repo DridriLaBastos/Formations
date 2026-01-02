@@ -3,7 +3,7 @@ spring:
     name: ecom-user-microservice
   data:
     mongodb:
-      uri: mongodb+srv://adriencournand_db_user:2Tpx4mLd3sc9IEp2@ecoms.ffjuyhc.mongodb.net/?appName=ecoms
+      uri: mongodb://localhost:27017
       database: ecom
 
 server:
