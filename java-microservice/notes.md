@@ -159,4 +159,9 @@ Les containeurs peuvent communiquer à traver un réseau docker
 
 **MongoDB ne travail qu'avec des String pour les ID**
 
-On peut configurer une base de donnée en ligne gratuitement pour apprendre à l'adresse https://cloud.mongodb.com/
+Certains sites proposent l'utilisation de base de donnée gratuitement (service forcément limité)
+* MongoDB : https://cloud.mongodb.com/
+* Postgres : https://neon.com/
+
+Possibilité de formater la sortie sql de l'application spring avec le réglage suivant :
+`spring:datasaource:jpa:properties:hibernate:format_sql: true`
