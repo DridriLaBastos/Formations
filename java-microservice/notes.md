@@ -310,4 +310,6 @@ Avec optional l'application ne va pas crasher si le fichier de configuration ne 
 
 ## Dynamic Updates and High Availability
 
+POST resquest à l'adresse `<applicaion>/actuator/refresh`
+
 ## Monitoring and versioning
