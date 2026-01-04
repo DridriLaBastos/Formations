@@ -296,7 +296,17 @@ spring:
 
 Dans les chemins ajouter un fichier `config-name.yaml`
 
-Dans la barre de recher taper `<config-name>/<profile[/label]`
+Dans la barre de recherche taper `<config-name>/<profile[/label]`
+
+### Charger un fichier de configuration au démarrage
+Dans le fichier de configuration de l'application (_**pas celui sur le serveur**_)
+```yaml
+spring:
+  config:
+    import: `[optional:]configserver:<address>`
+```
+
+Avec optional l'application ne va pas crasher si le fichier de configuration ne peut pas être chargé depuis le serveur
 
 ## Dynamic Updates and High Availability
 
