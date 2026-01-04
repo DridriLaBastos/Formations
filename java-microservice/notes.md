@@ -189,7 +189,7 @@ La valeur de la variable de configuration `scope1.scope2 ... .name` sera mis dan
 ```yaml
 spring:
   profiles:
-    activer: <profile>
+    active: <profile>
 ```
 
 Chargement automatique du fichier de configuration `application-<profile>.yaml` au redémarrage de l'application
@@ -275,6 +275,28 @@ Spring Cloud Config Server
 * Easy integration with Spring Boot
 * Support for different environments
 * Encryption & Decryption
+
+Accessing the file : 
+
+Dans le fichier `application.yaml` du serveur ajouter l'url contenant le fichier de configuration.
+
+Exemple pour un fichier local :
+
+```yaml
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations:
+            - <chemin1>
+            - <chemin2>
+
+```
+
+Dans les chemins ajouter un fichier `config-name.yaml`
+
+Dans la barre de recher taper `<config-name>/<profile[/label]`
 
 ## Dynamic Updates and High Availability
 
