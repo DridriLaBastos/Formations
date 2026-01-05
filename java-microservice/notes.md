@@ -237,6 +237,26 @@ scope1:
         <name>: ${ENV1_ENV2}
 ```
 
+### Configuration depuis un dépôt privé
+
+Fichier de configuration de l'application:
+
+```yaml
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: <url du dépôt>
+          username: <username>
+          password: <token>
+```
+
+_Remarque_:
+
+* Pour ne pas être mis en dur, les `<username>` et `<token>` peuvent être stockés dans une variable d'environnement
+* Pour github le token généré doit avoir la permission 'Contents'
+
 ## Consistency and Centralization
 
 ### TypeSafety with @ConfigurationProperties
@@ -310,6 +330,6 @@ Avec optional l'application ne va pas crasher si le fichier de configuration ne 
 
 ## Dynamic Updates and High Availability
 
-POST resquest à l'adresse `<applicaion>/actuator/refresh`
+POST resquest à l'adresse pour reconfigurer l'application sans la redémarrer `<applicaion>/actuator/refresh`
 
 ## Monitoring and versioning
