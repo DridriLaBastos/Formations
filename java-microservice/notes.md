@@ -350,6 +350,16 @@ Avec optional l'application ne va pas crasher si le fichier de configuration ne 
 
 ## Dynamic Updates and High Availability
 
-POST resquest à l'adresse pour reconfigurer l'application sans la redémarrer `<applicaion>/actuator/refresh`
+POST resquest à l'adresse pour reconfigurer l'application sans la redémarrer `<config-server>/actuator/refresh`
+
+### RabbitMQ
+
+Exécuter RabbitMQ dans sur un serveur ou une image docker : `docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`
+
+Après avoir installé RabbitMQ et démarré un serveur et s'y être connecté : lancer une mise à jour de la configuration en faisant une requête POST à l'adresse `<config-server>/actuator/busrefresh`.
+
+Chaque microservice exposant cet actuator aura sa configuration mise à jour
+
+_Remarque_: Si le fichier de configuration est dans le chemin `classpath:` la synchronisation ne fonctionnera pas. Pour un fichier de configuration local il fut un chemin avec `file:`
 
 ## Monitoring and versioning

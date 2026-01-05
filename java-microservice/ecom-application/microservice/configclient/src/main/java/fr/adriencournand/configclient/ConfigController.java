@@ -1,5 +1,7 @@
 package fr.adriencournand.configclient;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,7 @@ public class ConfigController {
     private String rsaConfig;
 
     @GetMapping("/crypted-config")
-    ResponseEntity<String> GetFailure() {
-        return ResponseEntity.ok("aes " + aesConfig + "\nrsa: " + rsaConfig);
+    ResponseEntity<List<String>> GetFailure() {
+        return ResponseEntity.ok(List.of("AES: '" + aesConfig + "'", "RSA: '" + rsaConfig + "'"));
     }
 }
