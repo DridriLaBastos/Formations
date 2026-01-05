@@ -229,6 +229,7 @@ Les valeurs seront disponible dans l'applciation _**dans la formation le fichier
 
 ## Security and Sensitive Data
 
+### Information sensible en variable d'environnement
 Si la variable d'environnement `ENV1_ENV2` est définie, dans le fichier de configuration sa valeur peut être récupérée avec
 ```yaml
 scope1:
@@ -236,6 +237,14 @@ scope1:
     ...
         <name>: ${ENV1_ENV2}
 ```
+
+### Cryptage / Décryptage
+
+Le serveur de configuration peut crypter des données en faisant une requête **POST** avec un `Content-Type` **Plain Text** avec les données à crypter dans son body à l'adresse `<application>/encrypt`
+
+L'opération inverse peut être réalisée en envoyant des données à l'adresse `<application>/decrypt`
+
+_Remarque_: Comme toutes les données de configuration la clé peut être donnée comme une variable d'environnement
 
 ### Configuration depuis un dépôt privé
 
