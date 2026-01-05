@@ -14,4 +14,9 @@ server:
   port: 8888
 
 encrypt:
-  key: "0E329232EA6D0D73"
+  # key: "0E329232EA6D0D73"
+  key-store:
+    location: config-server.jks
+    password: storepass
+    alias: config-server-key
+

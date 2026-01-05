@@ -238,13 +238,24 @@ scope1:
         <name>: ${ENV1_ENV2}
 ```
 
-### Cryptage / Décryptage
+### Cryptage / Décryptage avec AES
 
 Le serveur de configuration peut crypter des données en faisant une requête **POST** avec un `Content-Type` **Plain Text** avec les données à crypter dans son body à l'adresse `<application>/encrypt`
 
 L'opération inverse peut être réalisée en envoyant des données à l'adresse `<application>/decrypt`
 
 _Remarque_: Comme toutes les données de configuration la clé peut être donnée comme une variable d'environnement
+
+### Cryptage / Décryptage avec RSA
+
+RSA fonctionne comme un coffre fort :
+* clé public pour verrouiller le coffre
+* clé privée pour déverrouiller le coffre.
+
+Outil de création de clé fournit avec le jdk : `keytool`
+
+Génération : 
+`keytool -genkeypair -alias <alias> -keyalg RSA -dname <AVA format name> -keypass <mdp de la clé> -keystore <fichier où stocker les clés>.jks -storepass <mdp du coffre contenant les clés>`
 
 ### Configuration depuis un dépôt privé
 

@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RestController;;
 @RestController
 @RefreshScope
 public class ConfigController {
-    @Value("${test.loaded:failure}")
-    private String failure;
+    @Value("${crypted-config.aes:error}")
+    private String aesConfig;
 
-    @GetMapping("/failure")
+    @Value("${crypted-config.rsa:error}")
+    private String rsaConfig;
+
+    @GetMapping("/crypted-config")
     ResponseEntity<String> GetFailure() {
-        return ResponseEntity.ok(failure);
+        return ResponseEntity.ok("aes " + aesConfig + "\nrsa: " + rsaConfig);
     }
 }
