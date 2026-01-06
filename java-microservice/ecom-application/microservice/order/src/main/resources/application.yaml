@@ -1,16 +1,10 @@
 spring:
   application:
     name: ecom-order-microservice
-  datasource:
-    url: "jdbc:postgresql://localhost:5432/orders"
-    username: formation
-    password: formation
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  config:
+    import: configserver:http://localhost:8888
+  profiles:
+    active: dev
 
 server:
   port: 8083
