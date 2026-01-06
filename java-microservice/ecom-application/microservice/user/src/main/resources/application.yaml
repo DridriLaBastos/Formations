@@ -1,10 +1,10 @@
 spring:
   application:
     name: ecom-user-microservice
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017
-      database: ecom
+  profiles:
+    active: dev
+  config:
+    import: configserver:http://localhost:8888
 
 server:
   port: 8082

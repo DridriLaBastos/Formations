@@ -1,5 +1,15 @@
 name: ecom
 services:
+  rabbitmq:
+    container: rabbitmq_container
+    hostname: rabbitmq-container
+    image: rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - database
+    restart: unless-stopped
   postgres:
     container_name: postgres_container
     hostname: postgres-server

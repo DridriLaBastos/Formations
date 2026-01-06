@@ -9,17 +9,18 @@ spring:
         native:
           searchLocations:
             - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/configs
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+            - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/src/main/resources/configuration/ecom
+  # rabbitmq:
+  #   host: localhost
+  #   port: 5672
+  #   username: guest
+  #   password: guest
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "busrefresh"
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: "busrefresh"
 
 server:
   port: 8888
