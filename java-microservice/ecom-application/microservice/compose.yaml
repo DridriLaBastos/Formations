@@ -1,7 +1,7 @@
 name: ecom
 services:
   rabbitmq:
-    container: rabbitmq_container
+    container_name: rabbitmq_container
     hostname: rabbitmq-container
     image: rabbitmq:4-management
     ports:
