@@ -10,25 +10,20 @@ spring:
           searchLocations:
             - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/configs
             - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/src/main/resources/configuration/ecom
-  # rabbitmq:
-  #   host: localhost
-  #   port: 5672
-  #   username: guest
-  #   password: guest
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
-# management:
-#   endpoints:
-#     web:
-#       exposure:
-#         include: "busrefresh"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "busrefresh"
 
 server:
-  port: 8080
+  port: ${CONFIG_SERVER_PORT}
 
 encrypt:
-  # key: "0E329232EA6D0D73"
-  key-store:
-    location: config-server.jks
-    password: storepass
-    alias: config-server-key
-
+  key: ${CONFIG_SERVER_AES_KEY}

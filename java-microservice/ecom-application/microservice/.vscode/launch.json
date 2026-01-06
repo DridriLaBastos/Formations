@@ -1,0 +1,57 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ConfigclientApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.configclient.ConfigclientApplication",
+            "projectName": "configclient",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "ConfigserverApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.configserver.ConfigserverApplication",
+            "projectName": "configserver",
+            "envFile": [
+                "${workspaceFolder}/.env",
+                "${workspaceFolder}/configserver/src/main/resources/configuration/secret.env"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "OrderApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.ecom.service.order.OrderApplication",
+            "projectName": "order",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "ProductApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.ecom.service.product.ProductApplication",
+            "projectName": "product",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "UserApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.ecom.service.user.UserApplication",
+            "projectName": "user",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

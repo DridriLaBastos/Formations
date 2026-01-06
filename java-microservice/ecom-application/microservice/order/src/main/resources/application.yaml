@@ -2,7 +2,7 @@ spring:
   application:
     name: ecom-order-microservice
   config:
-    import: configserver:http://localhost:8888
+    import: configserver:${CONFIG_SERVER_URL}
   profiles:
     active: dev
 
