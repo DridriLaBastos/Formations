@@ -6,6 +6,19 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ConsumerApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.consumer.ConsumerApplication",
+            "projectName": "consumer"
+        },
+        {
+            "type": "java",
+            "name": "ProviderApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.provider.ProviderApplication"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

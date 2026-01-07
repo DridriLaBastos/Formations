@@ -363,3 +363,9 @@ Chaque microservice exposant cet actuator aura sa configuration mise à jour
 _Remarque_: Si le fichier de configuration est dans le chemin `classpath:` la synchronisation ne fonctionnera pas. Pour un fichier de configuration local il fut un chemin avec `file:`
 
 ## Monitoring and versioning
+
+# Section 14 : Interservice Communication
+
+## RestTemplate
+
+A more modern approach is available using the RestClient API
