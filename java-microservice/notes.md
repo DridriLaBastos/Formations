@@ -381,3 +381,24 @@ Considered the most modern way for synchronous communication
 ## WebClient (asynchronous)
 
 Modern asynchronous
+
+## Comment choisir ?
+
+### Legacy vs New Project
+* Pour un projet déjà existant continuer avec ce qui a été fait
+* Pour un nouveau projet utiliser les approches les plus modernes
+
+### Synchronous vs Asynchronous
+* Pour les appels bloquants : RestClient + Http Interface est le plus pratique et facile
+* Pour le non bloquant WebClient surtout en cas de haut parallélisme ou des opérations limités par les Entrées/Sorties
+
+### Style de programmation / Expérience de développement
+* Approche déclarative : HttpInterface (OpenFeign fonctionne aussi mais est plus ancien et il vaut mieux privilégier les nouvelles méthodes)
+
+### Pas de solution miracles
+* Commencer avec ce qu'on préfère et faire évoluer le projet ensuite
+
+### Recommandation officielle de Spring
+* Synchronous : **RestClient** est la méthode la plus moderne et devrait être utilisée pour les nouveaux projets
+* Asynchronous : **WebClient** est la méthode la plus moderne et devrait être utilisée pour les nouveaux projets
+* (Avec HTTP interface pour le côté déclaratif)
