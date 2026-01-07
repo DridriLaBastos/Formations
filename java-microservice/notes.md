@@ -366,11 +366,14 @@ _Remarque_: Si le fichier de configuration est dans le chemin `classpath:` la sy
 
 # Section 14 : Interservice Communication
 
-## RestTemplate
+## RestTemplate (synchronous)
 
 A more modern approach is available using the RestClient API
 
-## OpenFeign
+## OpenFeign (synchronous)
 
-Permet de créer un Client Rest en utilisant des annotations.
-Considéré comme une meilleure approche à RestTemplate
+Permet de créer un Client Rest en utilisant des annotations -> très peu de code boilerplate
+
+## REST Client (synchronous)
+
+Considered the most modern way for synchronous communication
