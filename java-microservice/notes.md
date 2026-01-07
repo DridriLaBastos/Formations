@@ -377,3 +377,7 @@ Permet de créer un Client Rest en utilisant des annotations -> très peu de cod
 ## REST Client (synchronous)
 
 Considered the most modern way for synchronous communication
+
+## WebClient (asynchronous)
+
+Modern asynchronous
