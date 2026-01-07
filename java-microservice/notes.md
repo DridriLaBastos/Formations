@@ -369,3 +369,8 @@ _Remarque_: Si le fichier de configuration est dans le chemin `classpath:` la sy
 ## RestTemplate
 
 A more modern approach is available using the RestClient API
+
+## OpenFeign
+
+Permet de créer un Client Rest en utilisant des annotations.
+Considéré comme une meilleure approche à RestTemplate
