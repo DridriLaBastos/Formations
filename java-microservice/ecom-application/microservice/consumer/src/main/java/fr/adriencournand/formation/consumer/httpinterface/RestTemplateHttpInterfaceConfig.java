@@ -1,5 +1,7 @@
 package fr.adriencournand.formation.consumer.httpinterface;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -11,10 +13,16 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 @Configuration
 public class RestTemplateHttpInterfaceConfig {
 
+    @Bean("httpInterfaceLoadBalancedRestTemplate")
+    @LoadBalanced
+    public RestTemplate LoadBalancedRestTemplate() {
+        return new RestTemplate();
+    }
+
     @Bean("restTemplateInterface")
-    public IHttpInterfaceProvider RestTemplateHttpInterface() {
-        RestTemplate template = new RestTemplate();
-        template.setUriTemplateHandler(new DefaultUriBuilderFactory("http://localhost:8081"));
+    public IHttpInterfaceProvider RestTemplateHttpInterface(
+            @Qualifier("httpInterfaceLoadBalancedRestTemplate") RestTemplate template) {
+        template.setUriTemplateHandler(new DefaultUriBuilderFactory("http://provider"));
         RestTemplateAdapter adapter = RestTemplateAdapter.create(template);
         HttpServiceProxyFactory proxyFactory = HttpServiceProxyFactory.builderFor(adapter).build();
 
