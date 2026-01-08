@@ -424,3 +424,6 @@ Bénéfices:
 * Service Monitoring and Health Checks
 
 Netflix Eureka -> Un des registre les plus populaires
+
+_Remarques_:
+* `FeignClient` n'a pas besoin de l'annotation `@LoadBalanced` car il s'intègre automatiquement avec le Load Balancer de Spring Boot
