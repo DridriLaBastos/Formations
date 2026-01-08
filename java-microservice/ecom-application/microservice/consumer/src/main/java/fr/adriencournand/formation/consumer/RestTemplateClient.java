@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RestTemplateClient {
 
-    private static final String PROVIDER_URL = "http://localhost:8081";
+    private static final String PROVIDER_URL = "http://provider";
 
     private final RestTemplate restTemplate;
 
