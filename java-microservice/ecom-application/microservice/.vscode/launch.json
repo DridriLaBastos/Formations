@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EurekaApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.eureka.EurekaApplication",
+            "projectName": "eureka"
+        },
+        {
+            "type": "java",
             "name": "ConsumerApplication",
             "request": "launch",
             "mainClass": "fr.adriencournand.formation.consumer.ConsumerApplication",

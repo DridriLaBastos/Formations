@@ -402,3 +402,25 @@ Modern asynchronous
 * Synchronous : **RestClient** est la méthode la plus moderne et devrait être utilisée pour les nouveaux projets
 * Asynchronous : **WebClient** est la méthode la plus moderne et devrait être utilisée pour les nouveaux projets
 * (Avec HTTP interface pour le côté déclaratif)
+
+# Section 15 : Service Registery
+
+Permet la découverte dynamique des micro services.
+
+Les services s'enregistrent au démarage et se désenregistrent à leur arrêt.
+
+`http://localhost:8080` -> `http://service0`
+`http://localhost:8081` -> `http://service1`
+`http://localhost:8082` -> `http://service2`
+`http://localhost:8083` -> `http://service2`
+
+Deux instances du même service peuvent tourner en même temps : `http://localhost:8082` et `http://localhost:8083`
+
+Bénéfices:
+* Dynamic Service Discovery
+* Load Balancing
+* Fault Tolerance and Resilience
+* Scalability & Elasticity
+* Service Monitoring and Health Checks
+
+Netflix Eureka -> Un des registre les plus populaires
