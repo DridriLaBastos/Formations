@@ -427,3 +427,9 @@ Netflix Eureka -> Un des registre les plus populaires
 
 _Remarques_:
 * `FeignClient` n'a pas besoin de l'annotation `@LoadBalanced` car il s'intègre automatiquement avec le Load Balancer de Spring Boot
+
+`<eureka_address>/eureka/apps` -> Retourne un XML contenant l'ensemble des informations de connection des services enregistrés
+
+`<eureka_address>/eureka/apps/<service_name>` -> Retourne un XML contenant l'ensemble des informations de connection pour le service sélectionné
+
+`<eureka_address>/eureka/apps/<service_name>/<instance_id>` -> Retourne un XML contenant l'ensemble des informations de connection pour l'instance du service sélectionné
