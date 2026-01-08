@@ -14,7 +14,7 @@ public class InstanceController {
 
     @GetMapping("/instance-info")
     public String GrtInstanceInfo() {
-        System.out.print(("Request received at instance running on port" + port));
+        System.out.println(("Request received at instance running on port" + port));
         return "Instance : @" + instanceId + ":" + port;
     }
 

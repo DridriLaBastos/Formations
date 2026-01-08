@@ -26,6 +26,13 @@
         },
         {
             "type": "java",
+            "name": "ProviderApplication8082",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.provider.ProviderApplication",
+            "args": "--server.port=8082"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
