@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -39,6 +39,12 @@ public class ProductController {
     @GetMapping("/search")
     public ResponseEntity<List<ProductResponse>> SearchProducts(@RequestParam String keyword) {
         return ResponseEntity.ok(productService.SearchProducts(keyword));
+    }
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductResponse> GetProductById(@PathVariable Long productId) {
+        return productService.getProductById(Long.valueOf(productId)).map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")

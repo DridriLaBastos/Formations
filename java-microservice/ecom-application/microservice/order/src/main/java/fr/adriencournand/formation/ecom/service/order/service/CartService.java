@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import fr.adriencournand.formation.ecom.service.order.client.IProductServiceClient;
 import fr.adriencournand.formation.ecom.service.order.dto.CartItemRequest;
+import fr.adriencournand.formation.ecom.service.order.dto.ProductResponse;
 import fr.adriencournand.formation.ecom.service.order.model.CartItem;
 import fr.adriencournand.formation.ecom.service.order.repository.ICartItemRepository;
 import jakarta.transaction.Transactional;
@@ -18,19 +20,18 @@ import lombok.RequiredArgsConstructor;
 public class CartService {
 
     private final ICartItemRepository cartItemRepository;
+    private final IProductServiceClient productServiceClient;
 
     public boolean AddToCart(String userId, CartItemRequest request) {
-        // Optional<Product> productOpt =
-        // productRepository.findById(request.getProductId());
+        ProductResponse productResponse = productServiceClient.GetProductDetails(Long.valueOf(request.getProductId()));
 
-        // if (productOpt.isEmpty()) {
-        // return false;
-        // }
+        if (productResponse == null) {
+            return false;
+        }
 
-        // Product product = productOpt.get();
-        // if (product.getStockQuantity() < request.getQuantity()) {
-        // return false;
-        // }
+        if (productResponse.getStockQuantity() < request.getQuantity()) {
+            return false;
+        }
 
         // Optional<User> userOpt = userRepository.findById(Long.valueOf(userId));
         // if (userOpt.isEmpty()) {

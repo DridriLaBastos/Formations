@@ -50,6 +50,10 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public Optional<ProductResponse> getProductById(Long productId) {
+        return productRepository.findByIdAndActiveTrue(productId).map(ProductService::MapProductToProductResponse);
+    }
+
     private static void UpdateProductFromProducRequest(Product product, ProductRequest request) {
         if (request.getName() != null) {
             product.setName(request.getName());
