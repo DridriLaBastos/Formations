@@ -1,5 +1,5 @@
 spring:
   datasource:
     url: "jdbc:postgresql://ep-hidden-grass-ablxy9d1-pooler.eu-west-2.aws.neon.tech/orders?sslmode=require&channel_binding=require"
-    username: "{cipher}5dee8c55f1e623449ffba8f08c1da63f35fa9e33d6b71bb01fb5c7bcb5d64407"
+    username: "{cipher}cc1a20d3433fce045ac87827113479730716ef9e0a4e1819d0732118b2920db2"
     password: "{cipher}f83800c86fb542e4c1861b6f39c785aec9d823023a565bf6085ddf2973325778d83fafde815caaf33f8d9018d9b75dd0"
