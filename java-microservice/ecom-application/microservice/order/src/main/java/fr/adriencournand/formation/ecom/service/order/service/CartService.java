@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import fr.adriencournand.formation.ecom.service.order.client.IProductServiceClient;
+import fr.adriencournand.formation.ecom.service.order.client.IUserServiceClient;
 import fr.adriencournand.formation.ecom.service.order.dto.CartItemRequest;
 import fr.adriencournand.formation.ecom.service.order.dto.ProductResponse;
+import fr.adriencournand.formation.ecom.service.order.dto.UserResponse;
 import fr.adriencournand.formation.ecom.service.order.model.CartItem;
 import fr.adriencournand.formation.ecom.service.order.repository.ICartItemRepository;
 import jakarta.transaction.Transactional;
@@ -21,6 +23,7 @@ public class CartService {
 
     private final ICartItemRepository cartItemRepository;
     private final IProductServiceClient productServiceClient;
+    private final IUserServiceClient userServiceClient;
 
     public boolean AddToCart(String userId, CartItemRequest request) {
         ProductResponse productResponse = productServiceClient.GetProductDetails(Long.valueOf(request.getProductId()));
@@ -30,6 +33,12 @@ public class CartService {
         }
 
         if (productResponse.getStockQuantity() < request.getQuantity()) {
+            return false;
+        }
+
+        UserResponse userResponse = userServiceClient.GetUserInfo(userId);
+
+        if (userResponse == null) {
             return false;
         }
 

@@ -11,16 +11,15 @@ import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 @Configuration
-public class ProductServiceClientConfig {
+public class UserServiceClientConfig {
     @Bean
-    public IProductServiceClient ProductRestClientInterface(RestClient.Builder builder) {
-        RestClient client = builder.baseUrl("http://ecom-product-microservice")
+    IUserServiceClient UserRestClientInterface(RestClient.Builder builder) {
+        RestClient client = builder.baseUrl("http://ecom-user-microservice")
                 .defaultStatusHandler(HttpStatusCode::is4xxClientError, ((request, response) -> Optional.empty()))
                 .build();
         RestClientAdapter adaptor = RestClientAdapter.create(client);
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adaptor).build();
 
-        return factory.createClient(IProductServiceClient.class);
+        return factory.createClient(IUserServiceClient.class);
     }
-
 }

@@ -1,7 +1,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://formation.dv7t4wb.mongodb.net/?appName=formation
-      username: "{cipher}a9fe808f9eb0197546892cee1c266934568df1049918b6e2faa84c41241ca2b5fdd0d74f554490fd43c004144207f399"
-      password: "{cipher}433c3439afddc1b15d8e27bd53323461b601a76115b3907fb1da520eaaf35af2b824b5a65ab9f7a10e89f123aae6bffd"
+      uri: mongodb+srv://adriencournand_db_user:2Tpx4mLd3sc9IEp2@formation.dv7t4wb.mongodb.net/
       database: ecom
