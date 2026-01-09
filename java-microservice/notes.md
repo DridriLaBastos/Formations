@@ -440,7 +440,7 @@ Centralized logging stack :
 * `Elasticsearch` + `Kibana` (ELK Stack)
 * `Loki` + `Grafana`
 
-## Spring Boot Logging Strcuture:
+## Spring Boot Logging Structure:
 
 `Code` -> `SLF4J` -> `Loging Framework` -> `Log Output`
 
@@ -459,3 +459,7 @@ logging:
 
 * `root` -> Permet de changer le niveau de log de toute l'application
 * `<package>` -> Permet de change le niveau de log uniquement du package sélectionné
+
+Logback Configuration:
+* `logging:logback:rollingpolicy:max-file-size: <size>` -> size can be `1KB` / `1MB`
+* `logging:logback:rollingpolicy:max-history: <size>`

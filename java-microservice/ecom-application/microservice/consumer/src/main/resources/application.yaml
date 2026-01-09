@@ -20,3 +20,7 @@ management:
   endpoint:
     shutdown:
       enabled: true
+
+logging:
+  file:
+    name: logs/consumer.log
