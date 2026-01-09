@@ -2,6 +2,8 @@ package fr.adriencournand.formation.ecom.service.user.controller;
 
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class UserController {
     // Present in the formation I followed but not needed with
     // @RequiredArgsConstructor on the newer version of SpringBoost
     private final UserService userService;
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping()
     public ResponseEntity<List<UserResponse>> GetAllUsers() {
@@ -35,6 +38,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> GetUser(@PathVariable String id) {
+        logger.info("Request received for user {}", id);
         return userService.FetchUser(id).map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

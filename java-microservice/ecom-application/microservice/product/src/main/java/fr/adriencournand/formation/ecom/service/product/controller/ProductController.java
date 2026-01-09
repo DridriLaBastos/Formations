@@ -18,10 +18,12 @@ import fr.adriencournand.formation.ecom.service.product.dto.ProductRequest;
 import fr.adriencournand.formation.ecom.service.product.dto.ProductResponse;
 import fr.adriencournand.formation.ecom.service.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
+@Slf4j
 public class ProductController {
 
     private final ProductService productService;
@@ -58,6 +60,8 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> DeleteProduct(@PathVariable Long id) {
         boolean deleted = productService.DeleteProduct(id);
+        if (!deleted)
+            log.warn("Unable to delete request product {}", id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 

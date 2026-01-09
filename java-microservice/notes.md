@@ -433,3 +433,29 @@ _Remarques_:
 `<eureka_address>/eureka/apps/<service_name>` -> Retourne un XML contenant l'ensemble des informations de connection pour le service sélectionné
 
 `<eureka_address>/eureka/apps/<service_name>/<instance_id>` -> Retourne un XML contenant l'ensemble des informations de connection pour l'instance du service sélectionné
+
+# Section 17 : Observability : Logs, Metrics and Tracing
+
+Centralized logging stack :
+* `Elasticsearch` + `Kibana` (ELK Stack)
+* `Loki` + `Grafana`
+
+## Spring Boot Logging Strcuture:
+
+`Code` -> `SLF4J` -> `Loging Framework` -> `Log Output`
+
+* `SLF4` (**S**imple **L**oging **F**acade for **J**ava):  Forwards logs to the logging framework
+* `Loging Framework` -> Format the log and decides were to send it (`Logback` is the default in Spring Boot)
+* `Log Output` -> Console, File, Database, etc...
+
+Pour choisir le niveau de log dans le fichier `application.yaml`
+
+```yaml
+logging:
+  level:
+    root: [TRACE|DEBUG|INFO|WARN|ERROR]
+    <package>: [TRACE|DEBUG|INFO|WARN|ERROR]
+```
+
+* `root` -> Permet de changer le niveau de log de toute l'application
+* `<package>` -> Permet de change le niveau de log uniquement du package sélectionné
