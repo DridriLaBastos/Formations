@@ -18,8 +18,6 @@ services:
       POSTGRES_USER: formation
       POSTGRES_PASSWORD: formation
       PGDATA: /databases/postgres
-    volumes:
-      - $HOME/Documents/Informatique/databases/postgres:/databases/postgres
     ports:
       - "5432:5432"
     networks:
@@ -43,13 +41,18 @@ services:
     container_name: mongodb_server
     hostname: mongodb-server
     image: mongodb/mongodb-community-server
-    volumes:
-      - $HOME/Documents/Informatique/databases/mongodb:/data/db
     ports:
       - "27017:27017"
     networks:
       - database
     restart: unless-stopped
+  zeikin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - database
 
 networks:
   database:
