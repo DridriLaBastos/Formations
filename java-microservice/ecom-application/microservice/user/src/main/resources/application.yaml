@@ -2,7 +2,7 @@ spring:
   application:
     name: ecom-user-microservice
   profiles:
-    active: dev
+    active: local
   config:
     import: configserver:http://localhost:8888
 

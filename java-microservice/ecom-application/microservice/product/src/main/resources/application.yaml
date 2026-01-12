@@ -2,7 +2,7 @@ spring:
   application:
     name: ecom-product-microservice
   profiles:
-    active: dev
+    active: local
   config:
     import: configserver:${CONFIG_SERVER_URL}
 
