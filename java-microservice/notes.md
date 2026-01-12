@@ -469,3 +469,9 @@ Logback Configuration:
 Après avoir ajouter et configuré Prometheus au projet les metrics sont accessible à l'endpoint `<application-url>/actuator/prometheus`
 
 Le dashboard Prometheus est disponible à l'adresse `<prometheus-url>:9090`
+
+## Zipkin
+
+Zipkin permet de suivre le chemin emprunté par les requếtes entre les microservices
+
+Le dashboard de zipkin est diponible à l'adresse `<zipkin-server-url>:9411` 
