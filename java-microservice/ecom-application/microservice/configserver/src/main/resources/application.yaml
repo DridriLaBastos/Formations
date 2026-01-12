@@ -8,8 +8,8 @@ spring:
       server:
         native:
           searchLocations:
-            - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/configs
-            - file:/Users/adrien/Documents/Informatique/formations/java-microservice/ecom-application/microservice/configserver/src/main/resources/configuration/ecom
+          # When built with vscode the a target folder is created with a classes subfolder that corresponds to 'classpath:/' and contains a copy of the 'resources' folder
+            - classpath:/configuration/ecom
   rabbitmq:
     host: localhost
     port: 5672
