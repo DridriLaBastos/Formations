@@ -1,5 +1,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://adriencournand_db_user:2Tpx4mLd3sc9IEp2@formation.dv7t4wb.mongodb.net/
+      uri: mongodb+srv://adriencournand_db_user:2Tpx4mLd3sc9IEp2@formation.dv7t4wb.mongodb.net/?appName=formation
       database: ecom
