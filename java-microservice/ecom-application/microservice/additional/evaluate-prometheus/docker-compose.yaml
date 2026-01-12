@@ -214,9 +214,27 @@ services:
     networks:
       - loki
   
-
   flog:
     image: mingrammer/flog
     command: -f json -d 200ms -l
     networks:
       - loki
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - loki
+
+  rabbitmq:
+    container_name: rabbitmq_container
+    hostname: rabbitmq-container
+    image: rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - loki
+    restart: unless-stopped

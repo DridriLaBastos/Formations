@@ -1,15 +1,5 @@
 name: ecom
 services:
-  rabbitmq:
-    container_name: rabbitmq_container
-    hostname: rabbitmq-container
-    image: rabbitmq:4-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - database
-    restart: unless-stopped
   postgres:
     container_name: postgres_container
     hostname: postgres-server
@@ -46,21 +36,10 @@ services:
     networks:
       - database
     restart: unless-stopped
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      - database
-      - loki
 
 networks:
   database:
     driver: bridge
-  loki:
-    external: true
-    name: evaluate-prometheus_loki
 
 volumes:
   pgadmin:
