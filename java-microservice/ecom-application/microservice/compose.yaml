@@ -46,17 +46,21 @@ services:
     networks:
       - database
     restart: unless-stopped
-  zeikin:
+  zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
     ports:
       - "9411:9411"
     networks:
       - database
+      - loki
 
 networks:
   database:
     driver: bridge
+  loki:
+    external: true
+    name: evaluate-prometheus_loki
 
 volumes:
   pgadmin:

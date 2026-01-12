@@ -475,3 +475,5 @@ Le dashboard Prometheus est disponible à l'adresse `<prometheus-url>:9090`
 Zipkin permet de suivre le chemin emprunté par les requếtes entre les microservices
 
 Le dashboard de zipkin est diponible à l'adresse `<zipkin-server-url>:9411` 
+
+Après avoir Zipkin comme source de donnée dans Grafana, on peut voir les détails d'une requête en particulier en copiant le TraceID affiché par Zipkin dans le champ `Traces` de l'onglet `Queries` du menu `Explore` de Zipkin
