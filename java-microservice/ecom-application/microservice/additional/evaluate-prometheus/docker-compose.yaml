@@ -1,6 +1,6 @@
----
 networks:
   loki:
+    driver: "bridge"
 
 services:
   read:

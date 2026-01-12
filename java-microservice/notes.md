@@ -463,3 +463,9 @@ logging:
 Logback Configuration:
 * `logging:logback:rollingpolicy:max-file-size: <size>` -> size can be `1KB` / `1MB`
 * `logging:logback:rollingpolicy:max-history: <size>`
+
+## Prometheus
+
+Après avoir ajouter et configuré Prometheus au projet les metrics sont accessible à l'endpoint `<application-url>/actuator/prometheus`
+
+Le dashboard Prometheus est disponible à l'adresse `<prometheus-url>:9090`

@@ -5,6 +5,12 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 logging:
   file:
     name: logs/${spring.application.name}.log

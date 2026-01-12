@@ -6,5 +6,11 @@ spring:
   config:
     import: configserver:${CONFIG_SERVER_URL}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 server:
   port: 8081
