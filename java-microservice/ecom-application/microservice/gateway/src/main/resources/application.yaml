@@ -9,15 +9,15 @@ spring:
         webflux:
           routes:
             - id: product-service
-              uri: ${PRODUCT_SERVICE_URI}
+              uri: lb://ecom-product-microservice
               predicates:
                 - Path=/api/products/**
             - id: user-service
-              uri: ${USER_SERVICE_URI}
+              uri: lb://ecom-user-microservice
               predicates:
                 - Path=/api/users/**
             - id: order-service
-              uri: ${ORDER_SERVICE_URI}
+              uri: lb://ecom-order-microservice
               predicates:
                 - Path=/api/orders/**, /api/cart/**
 

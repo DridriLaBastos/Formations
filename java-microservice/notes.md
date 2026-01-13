@@ -485,3 +485,7 @@ Activer les logs de gateway :
 * `logging.level.org.springframework.cloud.gateway=TRACE`
 
 `@WebFilter` s'applique à toutes les requêtes venant du Web (extérieur de l'application)
+
+## Port Classique:
+
+* Eureka: 8761
