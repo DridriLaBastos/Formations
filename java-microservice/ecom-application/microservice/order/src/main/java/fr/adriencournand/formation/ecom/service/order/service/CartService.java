@@ -26,7 +26,7 @@ public class CartService {
     private final IProductServiceClient productServiceClient;
     private final IUserServiceClient userServiceClient;
 
-    @CircuitBreaker(name = "productService")
+    @CircuitBreaker(name = "productService", fallbackMethod = "AddToCartFallBack" )
     public boolean AddToCart(String userId, CartItemRequest request) {
         ProductResponse productResponse = productServiceClient.GetProductDetails(Long.valueOf(request.getProductId()));
 
@@ -69,6 +69,12 @@ public class CartService {
         }
 
         return true;
+    }
+
+    // Fallback methods must have the same parameters as the function they protect + an extra Exception parameter
+    public boolean AddToCartFallBack(String userId, CartItemRequest request, Exception exception) {
+        System.out.println("FALLBACK\n" + exception + "\n" + exception.getStackTrace());
+        return false;
     }
 
     public boolean DeleteItem(String userId, String productId) {
