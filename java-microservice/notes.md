@@ -534,3 +534,30 @@ The aggregator combines all the responses and send back one request to the clien
 * Never hard-code the URL
 * Implement Authentication & Security
 * Handle Errors Gracefully
+
+# Section 19 : Fault tolerence
+
+## Network Failures
+* Retry mechanism
+* Timeouts
+* Fallback
+
+## Service Unavailability
+* Circuit Breaker Pattern -> If a service keep failing stop sending message
+* Load Balancing -> Multiple instances of the service
+* Service Discovery -> Use service discovery tools to find healthy services and avoid calling the broken ones
+
+## High Latency
+
+* Caching -> Store frequently used data in memory (Redis, Hazelcast, ...)
+* Asynchronous Processing -> Instead of making the use wait, end the request to a queue and process it in the background (Kafka, RabbitMQ, ...)
+* Timeout & Fallback -> If the service is slow, stop waiting and show a default view
+
+## Resilience4J
+
+This a lightweight, easy to integrate with Spring Boot, fault tolerance library with multiple modules :
+* RetryModule
+* RateLimiter
+* Bulkhead -> Assigning unique resources to each service so if a resource is not available it don't break the rest of the application
+* CircuitBreaker
+
