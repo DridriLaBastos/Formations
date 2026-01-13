@@ -7,7 +7,9 @@ spring:
             - id: product-service
               uri: lb://ecom-product-microservice
               predicates:
-                - Path=/api/products/**
+                - Path=/products/**
+              filters:
+                - RewritePath=/products(?<segment>/?.*),/api/products${segment}
             # - id: user-service
             #   uri: lb://ecom-user-microservice
             #   predicates:

@@ -11,7 +11,8 @@ public class GatewayConfig {
     @Bean
     public RouteLocator GetCustomRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                    .route("user-service", r -> r.path("/api/users/**")
+                    .route("user-service", r -> r.path("/users/**")
+                    .filters(f -> f.rewritePath("/users(?<segment>/?.*)", "/api/users${segment}"))
                     .uri("lb://ecom-user-microservice"))
                     .route("order-service", r -> r.path("/api/orders/**", "/api/cart/**")
                     .uri("lb://ecom-order-microservice"))
