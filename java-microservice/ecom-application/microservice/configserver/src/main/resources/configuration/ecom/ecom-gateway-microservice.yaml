@@ -49,3 +49,15 @@ resilience4j:
         failureRateThreshold: 50
         automaticTransitionFromOpenToHalfOpenEnabled: true
         slidingWindowType: count_based
+
+# cloud:
+#     gateway:
+#       routes:
+#       - id: product_rate_limiter
+#         uri: lb://ecom-product-microservice
+#         filters:
+#         - name: RequestRateLimiter
+#           args:
+#             redis-rate-limiter.replenishRate: 1
+#             redis-rate-limiter.burstCapacity: 1
+#             redis-rate-limiter.requestedTokens: 1

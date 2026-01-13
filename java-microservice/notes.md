@@ -581,3 +581,13 @@ resilience4j:
 ```
 
 Pour faire des tests de monté en charge : https://jmeter.apache.org/
+
+## Redis Load Limiter
+
+Pour une raison inconnue dans le tuto la Gateway utilise Redis (cf video [249](https://www.udemy.com/course/java-spring-boot-microservices-with-spring-cloud-k8s-docker/learn/lecture/49585453#overview) )
+
+Pour une raison inconnu dans le tuto implémenter du rate limiting sur la gateway nécessite un nom d'utilisateur (cf video [250 ](https://www.udemy.com/course/java-spring-boot-microservices-with-spring-cloud-k8s-docker/learn/lecture/49585455#overview) 5:30)
+
+Documentation : https://docs.spring.io/spring-cloud-gateway/reference/4.2/spring-cloud-gateway/gatewayfilter-factories/requestratelimiter-factory.html#redis-ratelimiter
+
+Pour lancer redis dans un docker : `docker run -d --name redis -p 6379:6379 redis:latest`
