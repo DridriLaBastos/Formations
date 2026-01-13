@@ -486,6 +486,13 @@ Activer les logs de gateway :
 
 `@WebFilter` s'applique à toutes les requêtes venant du Web (extérieur de l'application)
 
+## Routes YAML / Java
+
+| Complex Filter | YAML | Java |
+| :---: | :---: | :---: |
+| Redability | easier for simple routes | more code required |
+| Custom logic| Limited | Flexible|
+
 ## Port Classique:
 
 * Eureka: 8761
