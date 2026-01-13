@@ -483,3 +483,5 @@ Après avoir Zipkin comme source de donnée dans Grafana, on peut voir les déta
 Activer les logs de gateway :
 * `logging.level.org.springframework.cloud.gateway.route.RouteDefinitionLocator=INFO`
 * `logging.level.org.springframework.cloud.gateway=TRACE`
+
+`@WebFilter` s'applique à toutes les requêtes venant du Web (extérieur de l'application)
