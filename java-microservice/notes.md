@@ -556,8 +556,26 @@ The aggregator combines all the responses and send back one request to the clien
 ## Resilience4J
 
 This a lightweight, easy to integrate with Spring Boot, fault tolerance library with multiple modules :
-* RetryModule
+* RetryModule -> Ne se lance que dans le cas où une erreur 500 est reçue
 * RateLimiter
 * Bulkhead -> Assigning unique resources to each service so if a resource is not available it don't break the rest of the application
 * CircuitBreaker
 
+Quelques options sympas : https://resilience4j.readme.io/docs/retry
+
+```yaml
+resilience4j:
+  retry:
+    instances:
+      <name>:
+        retryExceptions:
+          - <ExceptionClass1>
+          - <ExceptionClass2>
+          ...
+          # Permet de lancer le retry si une de ses exceptions survient
+        ignoreException:
+          - <ExceptionClass1>
+          - <ExceptionClass2>
+          ...
+          # Ne trigger pas retry si une de ses exceptions survient
+```

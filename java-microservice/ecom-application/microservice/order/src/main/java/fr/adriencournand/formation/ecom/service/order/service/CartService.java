@@ -13,6 +13,7 @@ import fr.adriencournand.formation.ecom.service.order.dto.UserResponse;
 import fr.adriencournand.formation.ecom.service.order.model.CartItem;
 import fr.adriencournand.formation.ecom.service.order.repository.ICartItemRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -25,9 +26,12 @@ public class CartService {
     private final ICartItemRepository cartItemRepository;
     private final IProductServiceClient productServiceClient;
     private final IUserServiceClient userServiceClient;
+    private int attempt;
 
-    @CircuitBreaker(name = "productService", fallbackMethod = "AddToCartFallBack" )
+    // @CircuitBreaker(name = "productService", fallbackMethod = "AddToCartFallBack" )
+    @Retry(name = "productServiceRetry", fallbackMethod = "AddToCartFallBack")
     public boolean AddToCart(String userId, CartItemRequest request) {
+        System.out.println("ATTEMPT COUNT : " + ++attempt);
         ProductResponse productResponse = productServiceClient.GetProductDetails(Long.valueOf(request.getProductId()));
 
         if (productResponse == null) {
