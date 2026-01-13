@@ -6,6 +6,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GatewayApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.gateway.GatewayApplication",
+            "projectName": "gateway",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
             "name": "EurekaApplication",
             "request": "launch",
             "mainClass": "fr.adriencournand.formation.eureka.EurekaApplication",

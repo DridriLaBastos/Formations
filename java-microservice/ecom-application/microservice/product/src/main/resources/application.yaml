@@ -7,4 +7,4 @@ spring:
     import: configserver:${CONFIG_SERVER_URL}
 
 server:
-  port: 8081
+  port: ${PRODUCT_SERVICE_PORT}

@@ -477,3 +477,9 @@ Zipkin permet de suivre le chemin emprunté par les requếtes entre les microse
 Le dashboard de zipkin est diponible à l'adresse `<zipkin-server-url>:9411` 
 
 Après avoir Zipkin comme source de donnée dans Grafana, on peut voir les détails d'une requête en particulier en copiant le TraceID affiché par Zipkin dans le champ `Traces` de l'onglet `Queries` du menu `Explore` de Zipkin
+
+# Section 18 : API Gateway
+
+Activer les logs de gateway :
+* `logging.level.org.springframework.cloud.gateway.route.RouteDefinitionLocator=INFO`
+* `logging.level.org.springframework.cloud.gateway=TRACE`

@@ -8,4 +8,4 @@ spring:
     active: dev
 
 server:
-  port: 8083
+  port: ${ORDER_SERVICE_PORT}

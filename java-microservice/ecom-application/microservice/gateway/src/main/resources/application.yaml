@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: ecom-gateway-microservice
+  config:
+    import: configserver:${CONFIG_SERVER_URL}
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: product-service
+              uri: ${PRODUCT_SERVICE_URI}
+              predicates:
+                - Path=/api/products/**
+            - id: user-service
+              uri: ${USER_SERVICE_URI}
+              predicates:
+                - Path=/api/users/**
+            - id: order-service
+              uri: ${ORDER_SERVICE_URI}
+              predicates:
+                - Path=/api/orders/**, /api/cart/**
+
+server:
+  port: 8080
