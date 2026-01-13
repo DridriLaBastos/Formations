@@ -4,10 +4,12 @@ spring:
       server:
         webflux:
           routes:
-            - id: product-service
-              uri: lb://ecom-product-microservice
-              predicates:
-                - Path=/api/products/**
+            # - id: product-service
+            #   uri: lb://ecom-product-microservice
+            #   predicates:
+            #     - Path=/api/products/**
+            #   filters:
+            #     - Name=gatewayBreaker
             - id: user-service
               uri: lb://ecom-user-microservice
               predicates:
@@ -26,3 +28,24 @@ spring:
               uri: http://localhost:8761
               predicates:
                 - Path=/eureka/**
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      gatewayBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
