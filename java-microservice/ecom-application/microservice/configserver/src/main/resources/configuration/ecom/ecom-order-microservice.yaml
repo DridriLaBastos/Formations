@@ -33,3 +33,10 @@ resilience4j:
       productServiceRetry:
         maxAttempts: 5
         waitDuration: 1000ms
+  ratelimiter:
+    instances:
+      orderServiceLimiter:
+        # See https://resilience4j.readme.io/docs/ratelimiter#create-and-configure-a-ratelimiter
+        timeout-duration: 0 # Not waiting before failure if the rate is reached and request arrives
+        limit-for-period: 2 # Number of API calls in a specific period of time
+        limit-refresh-period: 4s # The time period told in the previous parameter

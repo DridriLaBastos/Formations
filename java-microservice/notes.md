@@ -557,7 +557,7 @@ The aggregator combines all the responses and send back one request to the clien
 
 This a lightweight, easy to integrate with Spring Boot, fault tolerance library with multiple modules :
 * RetryModule -> Ne se lance que dans le cas où le service lance une erreur, pas dans le cas où il ne répond pas
-* RateLimiter
+* RateLimiter -> Technique pour limiter le trafic sur le réseau
 * Bulkhead -> Assigning unique resources to each service so if a resource is not available it don't break the rest of the application
 * CircuitBreaker
 
@@ -579,3 +579,5 @@ resilience4j:
           ...
           # Ne trigger pas retry si une de ses exceptions survient
 ```
+
+Pour faire des tests de monté en charge : https://jmeter.apache.org/
