@@ -12,6 +12,7 @@ import fr.adriencournand.formation.ecom.service.order.dto.ProductResponse;
 import fr.adriencournand.formation.ecom.service.order.dto.UserResponse;
 import fr.adriencournand.formation.ecom.service.order.model.CartItem;
 import fr.adriencournand.formation.ecom.service.order.repository.ICartItemRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ public class CartService {
     private final IProductServiceClient productServiceClient;
     private final IUserServiceClient userServiceClient;
 
+    @CircuitBreaker(name = "productService")
     public boolean AddToCart(String userId, CartItemRequest request) {
         ProductResponse productResponse = productServiceClient.GetProductDetails(Long.valueOf(request.getProductId()));
 
