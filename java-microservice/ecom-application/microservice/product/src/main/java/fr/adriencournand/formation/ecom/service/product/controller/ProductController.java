@@ -28,6 +28,17 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @GetMapping("/simulate")
+    public ResponseEntity<String> SimulateFailure (
+        @RequestParam(defaultValue = "false") boolean fail) {
+            if (fail) {
+                throw new RuntimeException("Simulate failure for testing");
+            }
+
+            return ResponseEntity.ok("Product service is OK");
+        }
+
+
     @PostMapping
     public ResponseEntity<ProductResponse> CreateProduct(@RequestBody ProductRequest productRequest) {
         return new ResponseEntity<ProductResponse>(productService.CreateProduct(productRequest), HttpStatus.CREATED);
