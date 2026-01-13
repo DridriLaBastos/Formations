@@ -496,3 +496,41 @@ Activer les logs de gateway :
 ## Port Classique:
 
 * Eureka: 8761
+
+## Get Away Pattern
+
+### Backend for Frontend
+
+```
+Desktop -> Gateway1
+Mobile  -> Gateway2
+```
+
+Gateway1 & Gateway2 reponsibles to redirect request to the right microservice
+
+### Single Entry Point
+
+```
+Desktop -> |         | -> Microservice 1
+           | Gateway | -> Microservice 2
+Mobile  -> |         | -> Microservice 3
+```
+
+Gateway redirect the response to each client
+
+### Aggreagation Gateway
+
+```
+Desktop -> |         |    |            | -> Microservice 1
+           | Gateway | -> | Aggregator | -> Microservice 2
+Mobile  -> |         |    |            | -> Microservice 3
+```
+
+The aggregator combines all the responses and send back one request to the client
+
+## Best Practices for Gateway
+
+* Use Load Balancing
+* Never hard-code the URL
+* Implement Authentication & Security
+* Handle Errors Gracefully
