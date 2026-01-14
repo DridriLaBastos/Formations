@@ -615,3 +615,6 @@ Si le service de destination n'est pas disponible les informations du message ne
 * Fanout Exchange : broadcast every message o all bound queue (Notifications, Broadcasting, ...)
 * Topic Exchngae  : route messages dynamically based on patterns in routing keys (Logging, Event-Driven Systems, ...)
 * Header Exchange : route message based on key-value pairs in message headers (Targeted Marketing, Metadata-Based Routing, ...)
+
+AMQP on the cloud with a free plan:
+https://www.cloudamqp.com/
