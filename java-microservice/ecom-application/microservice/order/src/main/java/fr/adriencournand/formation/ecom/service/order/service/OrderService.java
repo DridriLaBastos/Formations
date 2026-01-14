@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import fr.adriencournand.formation.ecom.service.order.dto.OrderCreateEvent;
 import fr.adriencournand.formation.ecom.service.order.dto.OrderItemDTO;
 import fr.adriencournand.formation.ecom.service.order.dto.OrderResponse;
 import fr.adriencournand.formation.ecom.service.order.model.CartItem;
@@ -66,8 +67,15 @@ public class OrderService {
         // Clear the cart
         cartService.ClearCart(userId);
 
-        rabbitTemplate.convertAndSend(exchangeName, routingKey,
-                Map.of("orderId", savedOrder.getId(), "status", "CREATED"));
+        OrderCreateEvent event = new OrderCreateEvent(
+                savedOrder.getId(),
+                savedOrder.getUserId(),
+                savedOrder.getStatus(),
+                MapOrderItemToOrderItemDTO(savedOrder.getItems()), savedOrder.getTotalAmount(),
+                savedOrder.getCreatedAt());
+
+        // Publish order created event
+        rabbitTemplate.convertAndSend(exchangeName, routingKey, event);
 
         OrderResponse response = MapOrderToOrderResponse(savedOrder);
 
@@ -80,6 +88,13 @@ public class OrderService {
                         orderItem.getQuantity(),
                         orderItem.getPrice(), orderItem.getPrice().multiply(new BigDecimal(orderItem.getQuantity()))))
                 .toList(), order.getCreatedAt());
+    }
+
+    static private List<OrderItemDTO> MapOrderItemToOrderItemDTO(List<OrderItem> items) {
+        return items
+                .stream().map(item -> new OrderItemDTO(item.getId(), item.getProductId(), item.getQuantity(),
+                        item.getPrice(), item.getPrice().multiply(new BigDecimal(item.getQuantity()))))
+                .collect(Collectors.toList());
     }
 
 }
