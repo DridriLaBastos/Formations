@@ -6,6 +6,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "NotificationApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.notification.NotificationApplication"
+        },
+        {
+            "type": "java",
             "name": "GatewayApplication",
             "request": "launch",
             "mainClass": "fr.adriencournand.formation.gateway.GatewayApplication",
