@@ -591,3 +591,27 @@ Pour une raison inconnu dans le tuto implémenter du rate limiting sur la gatewa
 Documentation : https://docs.spring.io/spring-cloud-gateway/reference/4.2/spring-cloud-gateway/gatewayfilter-factories/requestratelimiter-factory.html#redis-ratelimiter
 
 Pour lancer redis dans un docker : `docker run -d --name redis -p 6379:6379 redis:latest`
+
+# Section 20 : Async communication
+
+## Message Queue
+Permet de stocker des messages pour être consumés.
+
+Si le service de destination n'est pas disponible les informations du message ne sont pas perdues mais reste dans la message queue jusq'à être consumés
+
+* https://www.rabbitmq.com/
+* https://aws.amazon.com/fr/sqs/
+* https://activemq.apache.org/
+
+**_Architecture:_**
+
+```
+|          | -- bindings -> Queue |
+| Exchange | -- bindings -> Queue |--> Consumer service
+|          | -- bindings -> Queue |
+```
+
+* Direct Matching : the message is delivered to a unique Queue (Order Processing, Support Tickets,...)
+* Fanout Exchange : broadcast every message o all bound queue (Notifications, Broadcasting, ...)
+* Topic Exchngae  : route messages dynamically based on patterns in routing keys (Logging, Event-Driven Systems, ...)
+* Header Exchange : route message based on key-value pairs in message headers (Targeted Marketing, Metadata-Based Routing, ...)
