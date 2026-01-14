@@ -227,17 +227,3 @@ services:
       - "9411:9411"
     networks:
       - loki
-
-  rabbitmq:
-    container_name: rabbitmq_container
-    hostname: rabbitmq-container
-    image: rabbitmq:4-management
-    ports:
-      - "5672:5672" # RabbitMQ Message Brocker
-      - "15672:15672" # RabbitMQ Management UI (http://localhost:15672)
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
-    networks:
-      - loki
-    restart: unless-stopped

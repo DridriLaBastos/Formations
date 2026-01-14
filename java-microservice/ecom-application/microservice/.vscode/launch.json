@@ -8,7 +8,9 @@
             "type": "java",
             "name": "NotificationApplication",
             "request": "launch",
-            "mainClass": "fr.adriencournand.formation.notification.NotificationApplication"
+            "mainClass": "fr.adriencournand.formation.notification.NotificationApplication",
+            "projectName": "notification",
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "type": "java",
@@ -65,10 +67,10 @@
             "request": "launch",
             "mainClass": "fr.adriencournand.configserver.ConfigserverApplication",
             "projectName": "configserver",
-            "envFile": [
-                "${workspaceFolder}/.env",
-                "${workspaceFolder}/configserver/src/main/resources/configuration/secret.env"
-            ]
+            "env": {
+                "CONFIG_SERVER_AES_KEY": "0E329232EA6D0D73"
+            },
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "type": "java",

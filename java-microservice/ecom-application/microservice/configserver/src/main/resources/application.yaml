@@ -11,10 +11,13 @@ spring:
           # When built with vscode the a target folder is created with a classes subfolder that corresponds to 'classpath:/' and contains a copy of the 'resources' folder
             - classpath:/configuration/ecom
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: "{cipher}5f6c03dcd29a8c4aade9145d9ab1e2745f09c2ebad56366494bf8c4719a7436d280d4cb1ea0e310d10466239906db7dc"
+    port: "${RABBITMQ_PORT}"
+    username: "{cipher}d34f7a0fca2bfe845eeec0a6d3bce035b0609cf7df3022711d1f6bde0d848d4e"
+    password: "{cipher}797d1b7d415307f7f1aa5b12341b40ba0ddaef5379bc6f2ea07060123af2dd62c7e6c8647f437d9a4f1ea3297db2330d71025d10f07d2134d0c4602b06054c3f"
+    virtual-host: "{cipher}f7f38e20c402885d9c4f5492db314ccb98114ef4afa6500192ffe252b55e2b80"
+    connection-timeout: 3000
+  
 
 management:
   endpoints:
