@@ -592,6 +592,12 @@ Documentation : https://docs.spring.io/spring-cloud-gateway/reference/4.2/spring
 
 Pour lancer redis dans un docker : `docker run -d --name redis -p 6379:6379 redis:latest`
 
+# Communication:
+- Request / Response (REST API, HTTP) -> synchronous communication : on system calls another and wait for a reply
+- Batch Processing (Nightly data imports, reports) -> When processing a large amount of data
+- Message Queue (RabbitMQ, SQS) -> FIFO : one system pushes data to a queue and others pull data from it
+- Event Streaming (Kafka, Pulsar) -> Producer sending multiple events and consumer reacting to them
+
 # Section 20 : Async communication
 
 ## Message Queue
@@ -618,3 +624,69 @@ Si le service de destination n'est pas disponible les informations du message ne
 
 AMQP on the cloud with a free plan:
 https://www.cloudamqp.com/
+
+# Section 21 : Apache Kafka (Streaming Message)
+
+Open Source distributed Event streaming platform https://kafka.apache.org/
+
+- stream : way of producing and consuming data
+
+```
+            |       | -> consumer
+producer -> | Kafka |
+            |       | -> consumer
+
+```
+
+Kafka is like a WhatsApp group
+
+## Kafka vs RabbitMQ
+
+| Feature | Kafka | RabbitMQ |
+| --- | --- | --- |
+| Model | Event Streaming (log based) | Message Queuing |
+| Message storage | Keeps all message for a set of time | Deletes message when consumed |
+| Consumers | Can read independently | Message removed once delivered |
+| Best For | High-Throughput / Real time analytics / data replay | Task Queueing / shirt lived jobs |
+| Persistence | Long term storage and replay | Short term delivery |
+| Prdering | Order guaranteed in partition | Ordering need to be manually handled |
+| Throughput | Very High (designed for streaming big data) | Moderate |
+
+## Architecture
+
+* Event: Ne peut pas être lui même, mais peut être n'import quoi qui se passe dans l'application
+* Producer: N'importe quoi qui envoie des events à Kafka -> Peuvent être en nombre illimité
+* Consumer : N'importe quoi qui consomme un événement envoyé à Kafka -> Peuvent être en nombre infini
+* Topics : Des canaux pour séparer les différentes messages -> Peut être séparé en plusieurs partitions
+* Partitions : Ségrégation au sein des topics
+* Consumer Groups : Ensemble de consomateur qui se partagent les messages reçus dans des partitions (besoin de plus de détails)
+* Offset : Indique la position du dernier message lu
+* Consumer Rebalancing : Processus automatique qui s'assure que les Consumer reçoivent une part équitable des partitions pour lire les données
+
+## Broker / Cluster /Zookeeper
+
+Il est possible d'avoir plusieurs instance de Kafka en cours d'exécution.
+
+* Broker -> Une instance de Kafka qui s'exécute
+* Cluster -> Un ensemble d'instance de Kafka
+* Zookeeper -> Gère l'entièreté d'un cluster
+
+## Concepts
+
+* Retention : How log Kafka keeps a messages
+* Replication : Kafka keeps copy of messages for safety
+* Producer Ack : Ways to confirm a message was successfully sent
+* Dead Ketter Queue DLQ : Special place to store failed messages
+* Kafka Connect : Tool to connect Kafka with database, cloud, etc
+* Kafka Stream : Allows to process data stored inside kafka in real-time
+
+## Execution
+
+(A l'heure du tutorial il faut lancer le zookeeper puis Kafka mais c'est sensé changer dans les futures mise à jour de Kafka)
+
+1. Démarrer le zookeeper : `docker run -d --name zookeeper -p 2181:2181 -e ZOOKEEPER_CLIENT_PORT=2181 -e ZOOKEEPER_TICK_TIME=2000 confluentinc/cp-zookeeper:7.5.0`
+1. Démarerer une instance de Kafka : `docker run -d --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=1 -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 --link zookeeper confluentinc/cp-kafka:7.5.0`
+1. Créer un topic dans le container : `kafka-topics --create --topic my-topic --bootstrap-server localhost:9092 --partitions 1 replication-factor 1`
+
+# Questions:
+- Pour moi la FIFO (Rabbit) c'était du streaming est-ce qu'avec RabbitMQ on ne peut pas aussi avoir un producer et plusieurs consumer qui s'reçoivent le même event ? Ce n'est pas exactement le même principe que les bindings ?
