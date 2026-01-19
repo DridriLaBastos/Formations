@@ -10,4 +10,9 @@ public class KafkaConsumer {
     public void Listen(String message) {
         System.out.println("Received message : '" + message + "'");
     }
+
+    @KafkaListener(topics = "java-created-topic", groupId = "my-java-group")
+    public void ListenJavaCreated(RiderLocation location) {
+        System.out.println("Received rider : " + location.toString());
+    }
 }
