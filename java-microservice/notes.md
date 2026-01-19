@@ -688,5 +688,15 @@ Il est possible d'avoir plusieurs instance de Kafka en cours d'exécution.
 1. Démarerer une instance de Kafka : `docker run -d --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=1 -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 --link zookeeper confluentinc/cp-kafka:7.5.0`
 1. Créer un topic dans le container : `kafka-topics --create --topic my-topic --bootstrap-server localhost:9092 --partitions 1 replication-factor 1`
 
+## Fonction Interface
+
+Interface avec une seule fonction
+
+Interface prédéfinies par défaut depuis Java 8:
+* `Function<InputType, OuputType>` -> Take one input of type `InputType` and returns a value of type `OutputType`
+* `Consumer<ConsumedType>` -> Takes one input of type `ConsumedType` and has zero return
+* `Supplier<ProducedType>` -> Takes no arguments and returns a value of type `ProducedType`
+* `Predicate<TestedType>`  -> Takes a value of type `TestedType`, performs actions on the input instance and returns a `boolean`
+
 # Questions:
 - Pour moi la FIFO (Rabbit) c'était du streaming est-ce qu'avec RabbitMQ on ne peut pas aussi avoir un producer et plusieurs consumer qui s'reçoivent le même event ? Ce n'est pas exactement le même principe que les bindings ?
