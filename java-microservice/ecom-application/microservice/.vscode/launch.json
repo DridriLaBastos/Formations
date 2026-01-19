@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ProducerApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.kafka.Producer.ProducerApplication",
+            "projectName": "Producer"
+        },
+        {
+            "type": "java",
             "name": "NotificationApplication",
             "request": "launch",
             "mainClass": "fr.adriencournand.formation.notification.NotificationApplication",
