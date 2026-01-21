@@ -12,12 +12,16 @@ spring:
   #       spring.json.value.default.type: fr.adriencournand.formation.kafka.consumer.RiderLocation
 
   cloud:
+    function:
+      definition: ProcessRiderLocation;ProcessRiderStatus
     stream:
       function:
-        definition: ProcessRiderLocation
+        definition: ProcessRiderLocation;ProcessRiderStatus
       bindings:
         ProcessRiderLocation-in-0:
           destination: my-topic
+        ProcessRiderStatus-in-0:
+          destination: java-created-topic
     kafka:
       binder:
         brokers: localhost:9092

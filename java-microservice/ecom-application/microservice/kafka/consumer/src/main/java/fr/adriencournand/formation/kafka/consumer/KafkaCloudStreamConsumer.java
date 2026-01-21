@@ -14,4 +14,11 @@ public class KafkaCloudStreamConsumer {
             System.out.println("Received" + location.toString());
         };
     }
+
+    @Bean
+    public Consumer<String> ProcessRiderStatus() {
+        return status -> {
+            System.out.println("Received" + status);
+        };
+    }
 }

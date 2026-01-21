@@ -1,5 +1,6 @@
 package fr.adriencournand.formation.kafka.Producer;
 
+import java.util.Random;
 import java.util.function.Supplier;
 
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,9 @@ public class KafkaCloudStreamProducer {
     @Bean
     public Supplier<RiderLocation> SendRiderLocation() {
         return () -> {
-            RiderLocation location = new RiderLocation("rider123", 22.48, 73.22);
+            Random r = new Random();
+            String riderId = "rider" + r.nextInt(20);
+            RiderLocation location = new RiderLocation(riderId, 22.48, 73.22);
             System.out.println("Sending: " + location.toString());
             return location;
         };

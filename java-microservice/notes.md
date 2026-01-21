@@ -708,5 +708,9 @@ spring boot application -> | spring cloud stream |
                                                  | -> Kafka
 ```
 
+L'apparition dans laquel un message est envoyé dépend du hash de la valeur envoyer -> pour switcher de partition générer des valeurs différentes à chaque fois
+
+L'option `spring.parition` de la commande `kafka-console-consumer` permet d'afficher la partition sur laquelle des messages ont été reçu
+
 # Questions:
 - Pour moi la FIFO (Rabbit) c'était du streaming est-ce qu'avec RabbitMQ on ne peut pas aussi avoir un producer et plusieurs consumer qui s'reçoivent le même event ? Ce n'est pas exactement le même principe que les bindings ?

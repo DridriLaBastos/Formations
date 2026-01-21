@@ -23,7 +23,7 @@ spring:
       bindings:
         # Bindings du return à l'indice 0 vers Kafka
         SendRiderLocation-out-0:
-          destination: my-topic
+          destination: java-created-topic
           content-type: application/json
     kafka:
       binder:
