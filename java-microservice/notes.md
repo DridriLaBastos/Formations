@@ -698,5 +698,15 @@ Interface prédéfinies par défaut depuis Java 8:
 * `Supplier<ProducedType>` -> Takes no arguments and returns a value of type `ProducedType`
 * `Predicate<TestedType>`  -> Takes a value of type `TestedType`, performs actions on the input instance and returns a `boolean`
 
+## Spring Cloud Stream
+
+Donne une interface générique pour l'envoi de message et s'occupe de l'envoyer ensuite au message broker choisit (Kafka, RabbitMQ, ...)
+
+```
+                                                 | -> RabbitMQ 
+spring boot application -> | spring cloud stream |
+                                                 | -> Kafka
+```
+
 # Questions:
 - Pour moi la FIFO (Rabbit) c'était du streaming est-ce qu'avec RabbitMQ on ne peut pas aussi avoir un producer et plusieurs consumer qui s'reçoivent le même event ? Ce n'est pas exactement le même principe que les bindings ?
