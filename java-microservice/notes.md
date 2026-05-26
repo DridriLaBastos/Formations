@@ -642,6 +642,8 @@ Kafka is like a WhatsApp group
 
 ## Kafka vs RabbitMQ
 
+cf https://www.udemy.com/course/java-spring-boot-microservices-with-spring-cloud-k8s-docker/learn/lecture/49955703#content
+
 | Feature | Kafka | RabbitMQ |
 | --- | --- | --- |
 | Model | Event Streaming (log based) | Message Queuing |
@@ -649,8 +651,24 @@ Kafka is like a WhatsApp group
 | Consumers | Can read independently | Message removed once delivered |
 | Best For | High-Throughput / Real time analytics / data replay | Task Queueing / shirt lived jobs |
 | Persistence | Long term storage and replay | Short term delivery |
-| Prdering | Order guaranteed in partition | Ordering need to be manually handled |
+| Ordering | Order guaranteed in partition | Ordering need to be manually handled |
 | Throughput | Very High (designed for streaming big data) | Moderate |
+| Use Case | Event sourcing, real-time analytics, data streaming pipeline | Tasks, command, small reliable messages, RPC-style communication |
+| Setup | Relatively easy | Heavier (can need zookeeper), some tuning can be needed (might be removed) |
+
+- Kafka : primiary based for pub sub model (one publisher multiple receiver)
+- RabbitMQ : primiary based for Queue (one publisher one receiver)
+
+### How to choose ?
+- RabbitMQ:
+  - fast reliable delivery of small messages (order placed, send email, ...)
+  - built in routing logic
+  - aknowledge or retry individual message easily
+  - building task queue (send SMS, generate PDF,...)
+- Kafka
+  - Huge volume of data long term (logs, event, metrics, ...)
+  - replay events (analytics, rebuilding state, event sourcing, ...)
+  - real time data pipelines (stream processing, machine learning ingestion, ...)
 
 ## Architecture
 
@@ -719,3 +737,4 @@ L'option `spring.parition` de la commande `kafka-console-consumer` permet d'affi
 
 Spring cloud stream permet de créer une abstraction pour l'envoie et la réception de message afin d'utiliser
 n'importe quel backend ensuite
+
