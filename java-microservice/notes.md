@@ -714,3 +714,8 @@ L'option `spring.parition` de la commande `kafka-console-consumer` permet d'affi
 
 # Questions:
 - Pour moi la FIFO (Rabbit) c'était du streaming est-ce qu'avec RabbitMQ on ne peut pas aussi avoir un producer et plusieurs consumer qui s'reçoivent le même event ? Ce n'est pas exactement le même principe que les bindings ?
+
+# Section 22 : Spring Cloud Function and Spring Cloud Stream
+
+Spring cloud stream permet de créer une abstraction pour l'envoie et la réception de message afin d'utiliser
+n'importe quel backend ensuite
