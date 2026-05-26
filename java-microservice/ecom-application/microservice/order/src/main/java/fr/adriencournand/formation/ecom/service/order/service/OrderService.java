@@ -2,12 +2,10 @@ package fr.adriencournand.formation.ecom.service.order.service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import fr.adriencournand.formation.ecom.service.order.dto.OrderCreateEvent;
@@ -24,77 +22,76 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final CartService cartService;
-    private final IOrderRepository orderRepository;
-    private final RabbitTemplate rabbitTemplate;
+        private final CartService cartService;
+        private final IOrderRepository orderRepository;
+        private final StreamBridge streamBridge;
 
-    @Value("${rabbitmq.exchange.name}")
-    private String exchangeName;
+        public Optional<OrderResponse> CreateOrder(String userId) {
+                // Validate for cart items
+                List<CartItem> cartItems = cartService.CartForUser(userId);
+                if (cartItems.isEmpty()) {
+                        return Optional.empty();
+                }
+                // Validate for user
+                // Optional<User> userOptional = userRepository.findById(Long.valueOf(userId));
+                // if (userOptional.isEmpty()) {
+                // Optional.empty();
+                // }
 
-    @Value("${rabbitmq.routing.key}")
-    private String routingKey;
+                // User user = userOptional.get();
 
-    public Optional<OrderResponse> CreateOrder(String userId) {
-        // Validate for cart items
-        List<CartItem> cartItems = cartService.CartForUser(userId);
-        if (cartItems.isEmpty()) {
-            return Optional.empty();
+                // Calculate total price
+                BigDecimal totalPrice = cartItems.stream().map(CartItem::getPrice).reduce(BigDecimal.ZERO,
+                                BigDecimal::add);
+
+                // Create order
+                Order order = new Order();
+                order.setUserId(userId);
+                order.setStatus(EOrderStatus.CONFIRMED);
+                order.setTotalAmount(totalPrice);
+
+                List<OrderItem> orderItems = cartItems.stream()
+                                .map(item -> new OrderItem(null, item.getProductId(), item.getQuantity(),
+                                                item.getPrice(), order))
+                                .collect(Collectors.toList());
+                order.setItems(orderItems);
+
+                Order savedOrder = orderRepository.save(order);
+
+                // Clear the cart
+                cartService.ClearCart(userId);
+
+                OrderCreateEvent event = new OrderCreateEvent(
+                                savedOrder.getId(),
+                                savedOrder.getUserId(),
+                                savedOrder.getStatus(),
+                                MapOrderItemToOrderItemDTO(savedOrder.getItems()), savedOrder.getTotalAmount(),
+                                savedOrder.getCreatedAt());
+
+                streamBridge.send("createOrder-out-0", event);
+
+                OrderResponse response = MapOrderToOrderResponse(savedOrder);
+
+                return Optional.of(response);
         }
-        // Validate for user
-        // Optional<User> userOptional = userRepository.findById(Long.valueOf(userId));
-        // if (userOptional.isEmpty()) {
-        // Optional.empty();
-        // }
 
-        // User user = userOptional.get();
+        static private OrderResponse MapOrderToOrderResponse(Order order) {
+                return new OrderResponse(order.getId(), order.getTotalAmount(), order.getStatus(), order.getItems()
+                                .stream()
+                                .map(orderItem -> new OrderItemDTO(orderItem.getId(), orderItem.getProductId(),
+                                                orderItem.getQuantity(),
+                                                orderItem.getPrice(),
+                                                orderItem.getPrice().multiply(new BigDecimal(orderItem.getQuantity()))))
+                                .toList(), order.getCreatedAt());
+        }
 
-        // Calculate total price
-        BigDecimal totalPrice = cartItems.stream().map(CartItem::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-
-        // Create order
-        Order order = new Order();
-        order.setUserId(userId);
-        order.setStatus(EOrderStatus.CONFIRMED);
-        order.setTotalAmount(totalPrice);
-
-        List<OrderItem> orderItems = cartItems.stream()
-                .map(item -> new OrderItem(null, item.getProductId(), item.getQuantity(), item.getPrice(), order))
-                .collect(Collectors.toList());
-        order.setItems(orderItems);
-
-        Order savedOrder = orderRepository.save(order);
-
-        // Clear the cart
-        cartService.ClearCart(userId);
-
-        OrderCreateEvent event = new OrderCreateEvent(
-                savedOrder.getId(),
-                savedOrder.getUserId(),
-                savedOrder.getStatus(),
-                MapOrderItemToOrderItemDTO(savedOrder.getItems()), savedOrder.getTotalAmount(),
-                savedOrder.getCreatedAt());
-
-        // Publish order created event
-        rabbitTemplate.convertAndSend(exchangeName, routingKey, event);
-
-        OrderResponse response = MapOrderToOrderResponse(savedOrder);
-
-        return Optional.of(response);
-    }
-
-    static private OrderResponse MapOrderToOrderResponse(Order order) {
-        return new OrderResponse(order.getId(), order.getTotalAmount(), order.getStatus(), order.getItems().stream()
-                .map(orderItem -> new OrderItemDTO(orderItem.getId(), orderItem.getProductId(),
-                        orderItem.getQuantity(),
-                        orderItem.getPrice(), orderItem.getPrice().multiply(new BigDecimal(orderItem.getQuantity()))))
-                .toList(), order.getCreatedAt());
-    }
-
-    static private List<OrderItemDTO> MapOrderItemToOrderItemDTO(List<OrderItem> items) {
-        return items
-                .stream().map(item -> new OrderItemDTO(item.getId(), item.getProductId(), item.getQuantity(),
-                        item.getPrice(), item.getPrice().multiply(new BigDecimal(item.getQuantity()))))
-                .collect(Collectors.toList());
-    }
+        static private List<OrderItemDTO> MapOrderItemToOrderItemDTO(List<OrderItem> items) {
+                return items
+                                .stream()
+                                .map(item -> new OrderItemDTO(item.getId(), item.getProductId(), item.getQuantity(),
+                                                item.getPrice(),
+                                                item.getPrice().multiply(new BigDecimal(item.getQuantity()))))
+                                .collect(Collectors.toList());
+        }
 
 }
