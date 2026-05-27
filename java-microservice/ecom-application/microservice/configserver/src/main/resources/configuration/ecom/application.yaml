@@ -6,13 +6,13 @@ eureka:
     fetch-registry: true
 
 spring:
-  rabbitmq:
-    host: "{cipher}5f6c03dcd29a8c4aade9145d9ab1e2745f09c2ebad56366494bf8c4719a7436d280d4cb1ea0e310d10466239906db7dc"
-    port: 5672
-    username: "{cipher}d34f7a0fca2bfe845eeec0a6d3bce035b0609cf7df3022711d1f6bde0d848d4e"
-    password: "{cipher}797d1b7d415307f7f1aa5b12341b40ba0ddaef5379bc6f2ea07060123af2dd62c7e6c8647f437d9a4f1ea3297db2330d71025d10f07d2134d0c4602b06054c3f"
-    virtual-host: "{cipher}f7f38e20c402885d9c4f5492db314ccb98114ef4afa6500192ffe252b55e2b80"
-    connection-timeout: 3000
+  # rabbitmq:
+  #   host: "{cipher}dc8398cca1352e74e375eeda1749c88742fdeca79ab9eee7e677b442bddf175f1aa265571f8cabf16121e84cecfdea7e"
+  #   port: 5672
+  #   username: "{cipher}190edd9e03a45372c162f3ed1192aea5e8caeb28022985572d5d012c33e935d7"
+  #   password: "{cipher}e1cc37f2fc842ac0b39529c945634152e648314c899a0fc6efc6bc7a75498824553a759869320f9d09091525fefc6f9a27d520e76886658431e946d60e6376c3"
+  #   virtual-host: "{cipher}190edd9e03a45372c162f3ed1192aea5e8caeb28022985572d5d012c33e935d7"
+  #   connection-timeout: 3000
 
 management:
   endpoints:

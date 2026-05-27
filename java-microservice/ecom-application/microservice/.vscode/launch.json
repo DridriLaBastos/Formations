@@ -32,7 +32,8 @@
             "name": "EurekaApplication",
             "request": "launch",
             "mainClass": "fr.adriencournand.formation.eureka.EurekaApplication",
-            "projectName": "eureka"
+            "projectName": "eureka",
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "type": "java",

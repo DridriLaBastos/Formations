@@ -3,9 +3,9 @@ spring:
     name: ecom-order-microservice
   config:
 # TODO: Is it possible to write http://configserver here and let Spring Boot discover the address of the config server at boot time ?
-    import: configserver:${CONFIG_SERVER_URL}
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:8888}
   profiles:
     active: dev
 
 server:
-  port: ${ORDER_SERVICE_PORT}
+  port: ${ORDER_SERVICE_PORT:8083}

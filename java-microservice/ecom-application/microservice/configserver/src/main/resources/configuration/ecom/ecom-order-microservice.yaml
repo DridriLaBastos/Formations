@@ -12,11 +12,15 @@ spring:
           destination: order.exchange
           content-type: application/json
     
-    rabbit:
-      bindings:
-      createOrder-out-0:
-        producer:
-          routing-key-expression: '''order.tracking'''
+    # rabbit:
+    #   bindings:
+    #   createOrder-out-0:
+    #     producer:
+    #       routing-key-expression: '''order.tracking'''
+
+      kafka:
+        binder:
+          brokers: localhost:9092
 
 management:
   endpoint:

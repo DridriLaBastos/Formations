@@ -354,7 +354,9 @@ POST resquest à l'adresse pour reconfigurer l'application sans la redémarrer `
 
 ### RabbitMQ
 
-Exécuter RabbitMQ dans sur un serveur ou une image docker : `docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`
+Exécuter RabbitMQ dans sur un serveur ou une image docker : `docker run -d -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management`
+
+Brocker MQTT utilisan RabbitMQ avec un plan gratuit : [Cloud AMQP](https://www.cloudamqp.com/)
 
 Après avoir installé RabbitMQ et démarré un serveur et s'y être connecté : lancer une mise à jour de la configuration en faisant une requête POST à l'adresse `<config-server>/actuator/busrefresh`.
 
@@ -738,3 +740,4 @@ L'option `spring.parition` de la commande `kafka-console-consumer` permet d'affi
 Spring cloud stream permet de créer une abstraction pour l'envoie et la réception de message afin d'utiliser
 n'importe quel backend ensuite
 
+Kafka est basé sur des octets alors que RabbitMQ comprends que l'on utilise des objets Java -> pas de besoin de converter pour RabbitMQ
