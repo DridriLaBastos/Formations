@@ -741,3 +741,58 @@ Spring cloud stream permet de créer une abstraction pour l'envoie et la récept
 n'importe quel backend ensuite
 
 Kafka est basé sur des octets alors que RabbitMQ comprends que l'on utilise des objets Java -> pas de besoin de converter pour RabbitMQ
+
+# Section 23 : Security, Authentication and Authorization
+
+* Security : protecting the app, user and data from threats
+* Authentication: verifying user identity
+* Authorization: what a user is allowed to do 
+
+All of those are handled by an Identity and Access Management
+* [Auth0](https://auth0.com/fr) (cloud based (whatever it means), easy to integrate, prend en charge social login)
+* [Okta](https://www.okta.com/fr-fr/)
+* [Keycloak](https://www.keycloak.org/) (Open Source) -> most popular choice witj Java Spring Boot
+* [Firebase Authentication](https://firebase.google.com/docs/auth?hl=fr)
+
+## Keycloak
+* Intégration de login avec les réseaux sociaux
+* Intégration avec LDAP ou Active Directory
+* Support pour OpenID Connect, OAuth 2.O and SAML
+
+Execution with Docker : `docker run -d -p 127.0.0.1:8443:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.6.3 start-dev`
+
+Création d'un admin
+* new user -> admin_new
+* Credentials -> new password
+* Role mapping -> Realm roles -> admin
+* resign with admin_new
+
+### Définitions
+* Keycloak Server : The main system tha runs everything (the server)
+* Realm: A workspace or a group
+* Client: An application that connects to Keycloak for login
+* Users: Users
+* Roles: What a user can do (a permission)
+  * roles are assigned **by client** -> A user can be admin on a dashboard but spectator on the modile app
+* Identity Provider: A way of connection (Github, Facebook, etc)
+* Protocole: Algorithms used be keycloak
+
+### Authentication Protocoles
+* OpenID Connect https://openid.net/
+  * Modern and used in most Apps
+  * Built on top of OAuth2
+  * Uses JWT tokens
+  * Work with modern apps : React, Angular, Spring Boot, Node, mobile
+  * Better for new apps
+  * Easier to integrate
+
+* Security Assertion Markup Langage
+  * Used in large and legacy systems (specifixaly with Java EE)
+  * Based on XML
+  * Better for maintaining legacy systems
+  * SAP, Oracle, Salesforce
+
+## OAuth 2
+
++OAuth 2 is a standard protocole that allows users to grant third-party application access to their information without sharing their passwords
+
