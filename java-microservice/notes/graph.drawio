@@ -1,0 +1,81 @@
+<mxfile host="65bd71144e">
+    <diagram id="6j-OSlbVGlXDbMp5aayq" name="Client Credentials Flow">
+        <mxGraphModel dx="1137" dy="589" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Client" vertex="1">
+                    <mxGeometry height="40" width="80" x="40" y="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Auth Server" vertex="1">
+                    <mxGeometry height="40" width="80" x="240" y="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="API" vertex="1">
+                    <mxGeometry height="40" width="80" x="440" y="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--4" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" target="EkJ8Ywp8XjO8HDztPG1--1" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="80" y="360" as="sourcePoint"/>
+                        <mxPoint x="600" y="280" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--5" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;" target="EkJ8Ywp8XjO8HDztPG1--2" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="280" y="360" as="sourcePoint"/>
+                        <mxPoint x="640" y="280" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--6" edge="1" parent="1" source="EkJ8Ywp8XjO8HDztPG1--3" style="endArrow=none;dashed=1;html=1;" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="630" y="330" as="sourcePoint"/>
+                        <mxPoint x="480" y="360" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--7" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="80" y="120" as="sourcePoint"/>
+                        <mxPoint x="280" y="120" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--8" connectable="0" parent="EkJ8Ywp8XjO8HDztPG1--7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;" value="Client ID &amp;amp; Secrets" vertex="1">
+                    <mxGeometry relative="1" x="0.23" y="3" as="geometry">
+                        <mxPoint x="-23" y="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--9" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="280" y="180" as="sourcePoint"/>
+                        <mxPoint x="80" y="180" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--10" connectable="0" parent="EkJ8Ywp8XjO8HDztPG1--9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;" value="Access Token" vertex="1">
+                    <mxGeometry relative="1" x="0.11" y="2" as="geometry">
+                        <mxPoint x="11" y="-12" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--11" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="80" y="240" as="sourcePoint"/>
+                        <mxPoint x="480" y="240" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--12" connectable="0" parent="EkJ8Ywp8XjO8HDztPG1--11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;" value="request with Authorization Header" vertex="1">
+                    <mxGeometry relative="1" x="-0.375" as="geometry">
+                        <mxPoint x="-15" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--13" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="480" y="300" as="sourcePoint"/>
+                        <mxPoint x="80" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EkJ8Ywp8XjO8HDztPG1--14" connectable="0" parent="EkJ8Ywp8XjO8HDztPG1--13" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;" value="Access Protected Data" vertex="1">
+                    <mxGeometry relative="1" x="0.415" y="-4" as="geometry">
+                        <mxPoint x="-7" y="-6" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
