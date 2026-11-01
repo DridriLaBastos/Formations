@@ -792,6 +792,39 @@ Création d'un admin
   * Better for maintaining legacy systems
   * SAP, Oracle, Salesforce
 
+### Setting Up
+#### Creating a client
+
+1. Creating an new realm `oauth2-demo`
+1. Creating a new client
+   1. `Client` -> `Create client`
+   1. Client type `OpenID Connect`
+   1. Client ID `<any ID | oauth2-authorization-code-flow>`
+   1. Next
+   1. `Client authentication` -> On | `Direct access grant` -> On
+   1. Next
+   1. `Valid redirect URIs` : `<client URL>` (app example : `http://localhost:8080/login/oauth2/code/<client id | oauth2-authorization-code-flow>`)
+   1. `Valid post logout redirect URIs` : `*` (dumbly followed the tuto)
+   1. `Web origin` : `http://localhost:8080` (url of the client)
+
+#### Application Configuration
+```yaml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          <client-id>:
+            client-id: <client-id>
+            client-secret: <keycloak -> Client -> Credentials -> Client secret>
+            scope: <client permissions>
+            authorization-grant-type: <which flow to be used>
+            redirect-uri: <Keycloak -> Client -> Valid redirect URIs>
+        provider:
+          authorization-grant-type:
+            issuer-uri: <Keycloak -> Left Panel:Realm Settings -> OpenID Endpoit... -> issuer>
+
+```
 ## OAuth 2
 
 +OAuth 2 is a standard protocole that allows users to grant third-party application access to their information without sharing their passwords
