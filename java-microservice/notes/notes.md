@@ -838,3 +838,31 @@ OAuth 2 is a standard protocole that allows users to grant third-party applicati
 * machine to machine call
 * Backend jobs, cron task (wtf is that ??), microservice communication
 * No end-user interaction required
+
+#### Implémentation
+2 machines needed : one to simulate a client the other to simulate the resource server containing the secured data
+
+##### Client
+1. Créer un realm `oauth2-demo` et le sélectionner
+1. Créer un client
+   * `Client Type` : `OpenID Connect (default)`
+   * `Client ID` : `<client id | oauth2-client-credentials>` -> Next
+1. Configurer le client
+   * `Client authentication` -> On
+   * `Service account roles` -> On
+   * Le restte -> Off
+```yaml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak-client:
+            client-id: <Client ID | oauth2-client-credentials>
+            client-secret: <Clients -> Credentials -> Client Secret>
+            authorization-grant-type: client_credentials
+            scope: openid
+        provider:
+          keycloak-client:
+            token-uri: <Real settings -> OpenID Endpoint Configuration -> token_endpoint>
+```

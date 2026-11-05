@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PureClientApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.example.pure_client.PureClientApplication",
+            "projectName": "pure-client"
+        },
+        {
+            "type": "java",
+            "name": "ResourceApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.example.resource.ResourceApplication",
+            "projectName": "resource"
+        },
+        {
+            "type": "java",
+            "name": "AuthCodeFlowApplication",
+            "request": "launch",
+            "mainClass": "fr.adriencournand.formation.auth_code_flow.AuthCodeFlowApplication",
+            "projectName": "auth-code-flow"
+        },
+        {
+            "type": "java",
             "name": "ProducerApplication",
             "request": "launch",
             "mainClass": "fr.adriencournand.formation.kafka.Producer.ProducerApplication",
