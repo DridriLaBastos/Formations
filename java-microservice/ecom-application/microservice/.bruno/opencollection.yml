@@ -2,6 +2,25 @@ opencollection: 1.0.0
 
 info:
   name: ecom-microservice
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  variables:
+    - name: APP_URL
+      value: http://localhost:{{PORT}}
+      description: Template to access the application urls
+    - name: API_URL
+      value: "{{APP_URL}}/api{{API_PATH}}"
 bundled: false
 extensions:
   bruno:

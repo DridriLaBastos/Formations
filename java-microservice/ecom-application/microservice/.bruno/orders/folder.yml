@@ -1,0 +1,10 @@
+info:
+  name: orders
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
+  variables:
+    - name: PORT
+      value: "8083"

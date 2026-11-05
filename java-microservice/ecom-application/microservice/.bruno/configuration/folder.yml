@@ -1,0 +1,12 @@
+info:
+  name: configuration
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+  variables:
+    - name: PORT
+      value:
+        type: number
+        data: "8888"

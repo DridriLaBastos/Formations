@@ -1,0 +1,21 @@
+info:
+  name: Update User
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{API_URL}}/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+      description: The ID of the user to modify
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

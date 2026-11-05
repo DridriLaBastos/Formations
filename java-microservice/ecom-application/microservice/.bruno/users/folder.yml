@@ -1,0 +1,12 @@
+info:
+  name: users
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit
+  variables:
+    - name: PORT
+      value: "8082"
+    - name: API_PATH
+      value: /users

@@ -1,0 +1,21 @@
+info:
+  name: Get User
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{API_URL}}/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+      description: Id of the user to retrieve. If empty retrieve all users
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

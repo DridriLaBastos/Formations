@@ -1,0 +1,19 @@
+info:
+  name: Encrypt
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{APP_URL}}/encrypt"
+  body:
+    type: text
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
